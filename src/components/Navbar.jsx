@@ -1,9 +1,18 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import logo from "./images/logo.png"
+import { useNavigate } from 'react-router-dom'
+
+
+
+
 
 
 export default function Navbar() {
+
+
+    let navigate = useNavigate();
 
 
     const user = {
@@ -15,11 +24,11 @@ export default function Navbar() {
 
 
     const navigation = [
-        { name: 'Products', href: '#', current: true },
-        { name: 'Products', href: '#', current: false },
-        { name: 'Products', href: '#', current: false },
-        { name: 'Products', href: '#', current: false },
-        { name: 'Products', href: '#', current: false },
+        { name: 'Products', href: '/gallery', current: true },
+        { name: 'Something', href: '#', current: false },
+        { name: 'Else', href: '#', current: false },
+        { name: 'What', href: '#', current: false },
+        { name: 'Ever', href: '#', current: false },
     ]
 
 
@@ -37,19 +46,33 @@ export default function Navbar() {
 
 
 
+
+    let goHero = () => {
+
+        navigate("/")
+    }
+
+    let goProducts = () => {
+
+        navigate("/products")
+    }
+
+
+
     return (
         <>
             <div className="min-h-full">
-                <Disclosure as="nav" className="bg-gray-800">
+                <Disclosure as="nav" className="bg-indigo-950">
                     {({ open }) => (
                         <>
                             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                                 <div className="flex h-16 items-center justify-between">
                                     <div className="flex items-center">
-                                        <div className="flex-shrink-0">
+                                        <div onClick={goHero}
+                                            className="flex-shrink-0 cursor-pointer">
                                             <img
-                                                className="h-8 w-8"
-                                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                                className="h-12 w-12 rounded-md "
+                                                src={logo}
                                                 alt="Your Company"
                                             />
                                         </div>
@@ -188,13 +211,16 @@ export default function Navbar() {
                 </Disclosure>
 
                 <header className="bg-white shadow">
-                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+                    <div className='w-full bg-[#CCFF00] text-center'>
+                        <p>SETTERS X EVENTS NOW ON! Elevate your wardrobe with us!</p>
                     </div>
+                    <div className="mx-auto w-full bg-indigo-950  text-center">
+                        <h1 className="text-3xl py-1 font-extrabold tracking-tight text-[#CCFF00]">SETTERS STORE</h1>
+                    </div>
+
+
                 </header>
-                <main>
-                    <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
-                </main>
+
             </div>
         </>
     )

@@ -12,3 +12,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.home-comm {
+  background-image: url("./components/images/summer.avif");
+  background-size: cover;
+  background-position: center;
+}
+
+.home-comm-label {
+  font-family: 'Rubik', sans-serif;
+}

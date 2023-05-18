@@ -88,8 +88,8 @@ export default function Hero() {
                                 <a href="#" className="-m-1.5 p-1.5">
                                     <span className="sr-only">Your Company</span>
                                     <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                        className="h-16 rounded-md w-auto"
+                                        src={logo}
                                         alt=""
                                     />
                                 </a>
@@ -165,7 +165,7 @@ export default function Hero() {
                                     onClick={goHome}
                                     className="rounded-md cursor-pointer bg-indigo-950 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
-                                    Get started
+                                    Explore the variety
                                 </p>
                                 <p onClick={goRegister} className="text-sm cursor-pointer font-semibold leading-6 text-gray-900">
                                     Register <span aria-hidden="true">→</span>
