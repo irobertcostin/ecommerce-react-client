@@ -5,7 +5,7 @@ export default class Data {
 
 
     api(path, method = "GET", body = null) {
-        const url = "http://localhost:4242" + path;
+        const url = "http://localhost:4242/api/v1" + path;
 
         const options = {
             method,

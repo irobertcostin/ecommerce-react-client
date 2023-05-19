@@ -11,22 +11,26 @@ export const ModelsProvider = ({ children }) => {
 
 
 
-    const [data, setData] = useState([]);
+    const [products, setProducts] = useState([]);
 
 
 
-    if (data.length == 0) {
+    if (products.length === 0) {
 
 
         let api = new Data();
 
+        api.getProducts().then(response => {
+            setProducts(response);
+
+        })
 
     }
 
 
 
     return (
-        <Context.Provider value={[data, setData]}>{children}</Context.Provider>
+        <Context.Provider value={[products, setProducts]}>{children}</Context.Provider>
     )
 
 

@@ -1,14 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
-
-
+import { useParams } from 'react-router-dom'
+import { Context } from '../context/Context'
 
 
 
 
 
 export default function Product() {
+
+    let [data, setData] = useContext(Context)
+    let [myProduct, setMyProduct] = useState('')
+
+    let id = useParams().id
+
+
+
+
+    useEffect(() => {
+        let x = data.filter(e => e.id == id);
+
+        setMyProduct(x[0]);
+    }, [data])
 
 
 
@@ -80,7 +94,7 @@ export default function Product() {
         <>
             <div className="bg-white">
                 <div className="pt-6">
-                    <nav aria-label="Breadcrumb">
+                    {/* <nav aria-label="Breadcrumb">
                         <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                             {product.breadcrumbs.map((breadcrumb) => (
                                 <li key={breadcrumb.id}>
@@ -107,7 +121,7 @@ export default function Product() {
                                 </a>
                             </li>
                         </ol>
-                    </nav>
+                    </nav> */}
 
                     {/* Image gallery */}
                     <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
@@ -146,13 +160,13 @@ export default function Product() {
                     {/* Product info */}
                     <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                         <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{myProduct.name}</h1>
                         </div>
 
                         {/* Options */}
                         <div className="mt-4 lg:row-span-3 lg:mt-0">
                             <h2 className="sr-only">Product information</h2>
-                            <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+                            <p className="text-3xl tracking-tight text-gray-900">$ {myProduct.price}</p>
 
                             {/* Reviews */}
                             <div className="mt-6">

@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"
 import { Context } from "../context/Context"
-import Data from "../services/Api"
 import ProductPhoto from "./images/Product-Photography.jpeg"
-
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,25 +12,33 @@ import ProductPhoto from "./images/Product-Photography.jpeg"
 export default function Products() {
 
 
-    let [products, setProducts] = useState([]);
+    let navigate = useNavigate();
 
 
-    let api = new Data();
+    let [data, setData] = useContext(Context);
+    let [products, setProducts] = useState([])
 
-    let getProducts = async () => {
 
-        let x = await api.getProducts();
-        setProducts(x)
+    let getProducts = () => {
+        setProducts(data)
+    }
 
+
+    let goToProduct = (element) => {
+
+        console.log(element.target.id);
+        // console.log(data);
+        navigate(`/product/${element.target.id}`)
 
     }
 
 
 
 
+
     useEffect(() => {
         getProducts();
-    }, [])
+    }, [data])
 
 
 
@@ -90,17 +97,19 @@ export default function Products() {
 
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                         {products.map((product) => (
-                            <a key={product.id} className="group">
+                            <div key={product.id} className="group">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                     <img
                                         src={ProductPhoto}
+                                        id={product.id}
                                         // alt={product.imageAlt}
-                                        className="h-full w-full object-cover object-center group-hover:opacity-75"
+                                        className="h-full w-full object-cover object-center group-hover:opacity-75 cursor-pointer"
+                                        onClick={goToProduct}
                                     />
                                 </div>
                                 <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
                                 <p className="mt-1 text-lg font-medium text-gray-900">$ {product.price}</p>
-                            </a>
+                            </div>
                         ))}
                     </div>
                 </div>
