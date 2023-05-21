@@ -13,17 +13,26 @@ export const ModelsProvider = ({ children }) => {
 
     const [products, setProducts] = useState([]);
 
-
+    let x;
 
     if (products.length === 0) {
+
 
 
         let api = new Data();
 
         api.getProducts().then(response => {
-            setProducts(response);
+            setProducts(response)
 
         })
+
+
+        api.getCustomers().then(response => {
+            x.push(response)
+
+        })
+
+        // setProducts(x);
 
     }
 

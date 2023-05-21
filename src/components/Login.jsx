@@ -1,5 +1,9 @@
 import logo from "./images/logo.png"
 import { useNavigate } from "react-router-dom"
+import { Context } from "../context/Context";
+import React, { useState, useEffect, useContext } from "react";
+import Data from "../services/Api";
+
 
 
 
@@ -19,6 +23,35 @@ export default function Login() {
         navigate("/")
     }
 
+
+
+
+
+    let [data, setData] = useContext(Context)
+
+    let [email, setEmail] = useState('');
+    let [password, setPassword] = useState('');
+
+    let emailOnChange = (element) => {
+        setEmail(element.target.value)
+    }
+
+
+
+    let passOnChange = (element) => {
+        setPassword(element.target.value)
+    }
+
+
+
+
+
+
+
+
+    useEffect(() => {
+        console.log(data);
+    }, [data])
 
 
     return (
@@ -50,6 +83,7 @@ export default function Login() {
                             </label>
                             <div className="mt-2">
                                 <input
+                                    onChange={emailOnChange}
                                     id="email"
                                     name="email"
                                     type="email"
@@ -73,6 +107,7 @@ export default function Login() {
                             </div>
                             <div className="mt-2">
                                 <input
+                                    onChange={passOnChange}
                                     id="password"
                                     name="password"
                                     type="password"
@@ -93,12 +128,12 @@ export default function Login() {
                         </div>
                     </form>
 
-                    <p className="mt-10 text-center text-sm text-gray-500">
+                    <div className="mt-10 text-center text-sm text-gray-500">
                         Not a member?{' '}
                         <p onClick={goReg} className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500">
                             Register here
                         </p>
-                    </p>
+                    </div>
                 </div>
             </div>
         </>
