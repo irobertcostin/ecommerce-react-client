@@ -5,7 +5,7 @@ export default class Data {
 
 
     api(path, method = "GET", body = null) {
-        const url = "http://localhost:4242" + path;
+        const url = "http://localhost:4242/api/v1" + path;
 
         const options = {
             method,
@@ -20,6 +20,50 @@ export default class Data {
         }
         return fetch(url, options)
     }
+
+
+    async getProducts() {
+
+        try {
+            let data = await this.api('/products')
+
+            if (data.status === 200) {
+                let resp = await data.json();
+                return resp;
+            } else {
+                let resp = await data.json();
+                message.error(resp.error.message, [3], console.log(""))
+            }
+
+        } catch (error) {
+            message.error(error, [3], console.log(error))
+        }
+
+
+    }
+
+
+    async getCustomers() {
+
+        try {
+            let data = await this.api('/customers')
+
+            if (data.status === 200) {
+                let resp = await data.json();
+                return resp;
+            } else {
+                let resp = await data.json();
+                message.error(resp.error.message, [3], console.log(""))
+            }
+
+        } catch (error) {
+            message.error(error, [3], console.log(error))
+        }
+
+
+    }
+
+
 
 
 }

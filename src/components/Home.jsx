@@ -1,12 +1,20 @@
 import Navbar from "./Navbar"
 import Products from "./Products"
 import fraser from "./images/frasers-plus-min.png"
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function Home() {
 
+    let navigate = useNavigate();
 
+
+    let goToProducts = () => {
+
+
+        navigate(`/gallery`)
+
+    }
 
 
     return (
@@ -20,7 +28,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                    <button className=" mb-12 bg-white px-6 py-3 rounded-sm font-bold">DISCOVER VARIETY</button>
+                    <button onClick={goToProducts} className=" mb-12 bg-white px-6 py-3 rounded-sm font-bold">DISCOVER VARIETY</button>
                 </div>
 
             </div>

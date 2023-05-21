@@ -111,12 +111,12 @@ export default function Register() {
                         </div>
                     </form>
 
-                    <p className="mt-10 text-center text-sm text-gray-500">
+                    <div className="mt-10 text-center text-sm text-gray-500">
                         Already a member?{' '}
                         <p onClick={goLogin} className="font-semibold cursor-pointer leading-6 text-indigo-950 hover:text-indigo-500">
                             Sign-in here
                         </p>
-                    </p>
+                    </div>
                 </div>
             </div>
         </>
