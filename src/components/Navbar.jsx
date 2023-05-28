@@ -15,6 +15,14 @@ export default function Navbar({ signedIn, setSignedIn }) {
     let navigate = useNavigate();
 
 
+
+    let handleSignOut = () => {
+        console.log(signedIn);
+        setSignedIn(false)
+    }
+
+
+
     const user = {
         name: 'Tom Cook',
         email: 'tom@example.com',
@@ -23,19 +31,13 @@ export default function Navbar({ signedIn, setSignedIn }) {
     }
 
 
-    const navigation = [
-        { name: 'Products', href: '/gallery', current: true },
-        { name: 'Something', href: '#', current: false },
-        { name: 'Else', href: '#', current: false },
-        { name: 'What', href: '#', current: false },
-        { name: 'Ever', href: '#', current: false },
-    ]
+
 
 
     const userNavigation = [
-        { name: 'Your Profile', href: '#' },
-        { name: 'Settings', href: '#' },
-        { name: 'Sign out', href: '#' },
+        { name: 'Your Profile', href: '' },
+        { name: 'Settings', href: '' },
+        { name: 'Sign out', onClick: handleSignOut },
     ]
 
 
@@ -47,12 +49,12 @@ export default function Navbar({ signedIn, setSignedIn }) {
 
     let goLogin = () => {
 
-        navigate("/login")
+        navigate("/customers/login")
     }
 
-    let goRegister = () => {
+    let goProducts = () => {
 
-        navigate("/register")
+        navigate("/gallery")
     }
 
 
@@ -74,31 +76,23 @@ export default function Navbar({ signedIn, setSignedIn }) {
                             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                                 <div className="flex h-16 items-center justify-between">
                                     <div className="flex items-center">
-                                        <div onClick={goHome}
-                                            className="flex-shrink-0 cursor-pointer">
-                                            <img
-                                                className="h-12 w-12 rounded-md "
-                                                src={logo}
-                                                alt="Your Company"
-                                            />
+                                        <div className="mx-auto w-full bg-indigo-950  text-center">
+                                            <h1 className="text-3xl py-1 font-extrabold tracking-tight text-[#CCFF00]">SETTERS STORE</h1>
                                         </div>
                                         <div className="hidden md:block">
                                             <div className="ml-10 flex items-baseline space-x-4">
-                                                {navigation.map((item) => (
-                                                    <a
-                                                        key={item.name}
-                                                        href={item.href}
-                                                        className={classNames(
-                                                            item.current
-                                                                ? 'bg-gray-900 text-white'
-                                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                            'rounded-md px-3 py-2 text-sm font-medium'
-                                                        )}
-                                                        aria-current={item.current ? 'page' : undefined}
-                                                    >
-                                                        {item.name}
-                                                    </a>
-                                                ))}
+                                                <button
+                                                    onClick={goHome}
+                                                    className='text-slate-300 hover:text-white'
+                                                >Home</button>
+                                                <button
+                                                    onClick={goProducts}
+                                                    className='text-slate-300 hover:text-white'
+                                                >Shop</button>
+                                                <button
+                                                    onClick={goProducts}
+                                                    className='text-slate-300 hover:text-white'
+                                                >Products</button>
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +101,7 @@ export default function Navbar({ signedIn, setSignedIn }) {
                                             !signedIn
                                                 ?
                                                 <div>
-                                                    <button onClick={goLogin} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Log in</button>
+                                                    <button onClick={goLogin} className='bg-[#CCFF00] px-5 py-1 text-lg font-extrabold rounded-md'>Log in</button>
                                                     {/* <button onClick={goRegister} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Register</button> */}
 
                                                 </div>
@@ -143,25 +137,10 @@ export default function Navbar({ signedIn, setSignedIn }) {
 
                                                                         </div>
                                                                         :
-                                                                        <>
-                                                                            {
-                                                                                userNavigation.map((item) => (
-                                                                                    <Menu.Item key={item.name}>
-                                                                                        {({ active }) => (
-                                                                                            <a
-                                                                                                href={item.href}
-                                                                                                className={classNames(
-                                                                                                    active ? 'bg-gray-100' : '',
-                                                                                                    'block px-4 py-2 text-sm text-gray-700'
-                                                                                                )}
-                                                                                            >
-                                                                                                {item.name}
-                                                                                            </a>
-                                                                                        )}
-                                                                                    </Menu.Item>
-                                                                                ))
-                                                                            }
-                                                                        </>
+                                                                        <div className='w-full flex flex-col px-1 py-2 justify-center items-center gap-4'>
+                                                                            <button className='w-full hover:bg-slate-200  ease-in-out duration-300'>Your Profile</button>
+                                                                            <button className='w-full hover:bg-slate-200  ease-in-out duration-300' onClick={handleSignOut}>Sign Out</button>
+                                                                        </div>
                                                                 }
                                                             </Menu.Items>
                                                         </Transition>
@@ -184,28 +163,26 @@ export default function Navbar({ signedIn, setSignedIn }) {
                             </div>
 
                             <Disclosure.Panel className="md:hidden">
-                                <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                                    {navigation.map((item) => (
-                                        <Disclosure.Button
-                                            key={item.name}
-                                            as="a"
-                                            href={item.href}
-                                            className={classNames(
-                                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                'block rounded-md px-3 py-2 text-base font-medium'
-                                            )}
-                                            aria-current={item.current ? 'page' : undefined}
-                                        >
-                                            {item.name}
-                                        </Disclosure.Button>
-                                    ))}
+                                <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3  flex flex-col gap-4">
+                                    <button
+                                        onClick={goHome}
+                                        className='text-slate-300 hover:text-white w-full '
+                                    >Home</button>
+                                    <button
+                                        onClick={goProducts}
+                                        className='text-slate-300 hover:text-white'
+                                    >Shop</button>
+                                    <button
+                                        onClick={goProducts}
+                                        className='text-slate-300 hover:text-white'
+                                    >Products</button>
                                 </div>
                                 <>
                                     {
                                         !signedIn
                                             ?
-                                            <div>
-                                                <button onClick={goLogin} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Log in</button>
+                                            <div className='w-full flex justify-center items-center pb-4'>
+                                                <button onClick={goLogin} className='bg-[#CCFF00] px-3 py-2 text-sm w-full mx-6 font-extrabold rounded-md'>Log in</button>
                                                 {/* <button onClick={goRegister} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Register</button> */}
 
                                             </div>
@@ -225,31 +202,16 @@ export default function Navbar({ signedIn, setSignedIn }) {
                                                     {
                                                         !signedIn
                                                             ?
-                                                            <div>
+                                                            <div className='w-full justify-center items-center'>
                                                                 <button onClick={goLogin} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Log in</button>
                                                                 {/* <button onClick={goRegister} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Register</button> */}
 
                                                             </div>
                                                             :
-                                                            <>
-                                                                {
-                                                                    userNavigation.map((item) => (
-                                                                        <Menu.Item key={item.name}>
-                                                                            {({ active }) => (
-                                                                                <a
-                                                                                    href={item.href}
-                                                                                    className={classNames(
-                                                                                        active ? 'bg-gray-100' : '',
-                                                                                        'block px-4 py-2 text-sm text-gray-700'
-                                                                                    )}
-                                                                                >
-                                                                                    {item.name}
-                                                                                </a>
-                                                                            )}
-                                                                        </Menu.Item>
-                                                                    ))
-                                                                }
-                                                            </>
+                                                            <div className='w-full flex flex-col px-1 py-2 justify-center items-center gap-4'>
+                                                                <button className='w-full  text-slate-300 hover:text-white ease-in-out duration-300'>Your Profile</button>
+                                                                <button className='w-full   ease-in-out text-slate-300 hover:text-white duration-300' onClick={handleSignOut}>Sign Out</button>
+                                                            </div>
                                                     }
                                                 </div>
                                             </div>
@@ -260,16 +222,14 @@ export default function Navbar({ signedIn, setSignedIn }) {
                     )}
                 </Disclosure>
 
-                <header className="bg-white shadow">
+                <div className="bg-white shadow">
                     <div className='w-full bg-[#CCFF00] text-center'>
                         <p>SETTERS X EVENTS NOW ON! Elevate your wardrobe with us!</p>
                     </div>
-                    <div className="mx-auto w-full bg-indigo-950  text-center">
-                        <h1 className="text-3xl py-1 font-extrabold tracking-tight text-[#CCFF00]">SETTERS STORE</h1>
-                    </div>
 
 
-                </header>
+
+                </div>
 
             </div>
         </>
