@@ -1,9 +1,9 @@
 import logo from "./images/logo.png"
 import { useNavigate } from "react-router-dom"
-import { Context } from "../context/Context";
+import { ContextUser } from "../context/ContextCustomers";
 import React, { useState, useEffect, useContext } from "react";
 import Data from "../services/Api";
-
+import Cookies from "js-cookie";
 
 
 
@@ -12,10 +12,6 @@ export default function Login() {
 
     let navigate = useNavigate();
 
-    let goReg = () => {
-
-        navigate("/register")
-    }
 
 
     let goHome = () => {
@@ -24,10 +20,11 @@ export default function Login() {
     }
 
 
+    let [user, setUser] = useContext(ContextUser)
 
 
 
-    let [data, setData] = useContext(Context)
+
 
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
@@ -45,13 +42,50 @@ export default function Login() {
 
 
 
+    let login = async (e) => {
+
+        e.preventDefault();
+
+        if (email !== "" && password !== "") {
+            let api = new Data();
+            let attempt = await api.login(email, password)
+
+            Cookies.set("authenticatedUser", JSON.stringify(attempt));
+            setUser(attempt)
+
+        }
+    }
+
+
+
+
+    // copy to clipboard function 
+
+    let [isCopied, setIsCopied] = useState(false);
+
+    let handleCopyClick = (element) => {
+        // write text to navigator 
+        console.log(element.target.value);
+        // navigator.clipboard.writeText("");
+        // setIsCopied(true);
+        // // drops the text 
+        // setTimeout(() => {
+        //     navigator.clipboard.writeText('');
+        //     setIsCopied(false)
+        // }, 10000);
+    };
+
+
+
+
+
 
 
 
 
     useEffect(() => {
-        console.log(data);
-    }, [data])
+        console.log();
+    }, [])
 
 
     return (
@@ -120,19 +154,35 @@ export default function Login() {
 
                         <div>
                             <button
-                                type="submit"
-                                className="flex w-full justify-center rounded-md bg-indigo-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                onClick={login}
+
+                                className="flex w-full justify-center rounded-md bg-indigo-950 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#CCFF00] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Sign in
                             </button>
                         </div>
                     </form>
 
-                    <div className="mt-10 text-center text-sm text-gray-500">
-                        Not a member?{' '}
-                        <p onClick={goReg} className="font-semibold cursor-pointer leading-6 text-indigo-600 hover:text-indigo-500">
-                            Register here
-                        </p>
+                    <div className="mt-10 text-sm text-gray-500 bg-[#CCFF00] bg-opacity-80 p-4">
+                        <p className="text-md font-semibold">Use this login data: </p>
+                        <div className=" p-4 flex flex-col-2 justify-between items-center flex-wrap">
+                            {/* {customers.map((item) => (
+                                <div key={item.name} className="w-full flex justify-between items-center">
+                                    <p onClick={handleCopyClick}>{item.email}</p>
+                                    <p onClick={handleCopyClick}>{item.password}</p>
+                                </div>
+                            ))} */}
+                            <p onClick={handleCopyClick}>ugrowden0@etsy.com</p>
+                            <p>UBiSYoL</p>
+                            <p>droskruge1@acquirethisname.com</p>
+                            <p>xTSJ1w</p>
+                            <p>udhallbord2@cnet.com</p>
+                            <p>CdynVsgurG</p>
+                            <p>mklimkov3@huffingtonpost.com</p>
+                            <p>MrgpBOD2</p>
+                            <p>achue4@example.com</p>
+                            <p>VzVNKfEzrZ7k</p>
+                        </div>
                     </div>
                 </div>
             </div>

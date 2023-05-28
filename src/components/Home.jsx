@@ -33,7 +33,7 @@ export default function Home() {
 
             </div>
 
-            <div className="w-full bg-gradient-to-r from-black to-indigo-900 mt-4 h-[200px] flex justify-between">
+            <div className="w-full bg-gradient-to-r from-black to-indigo-900 mt-4 h-[200px] md:justify-center md:items-center flex justify-between">
                 <div className="text-white px-4 py-2  flex flex-col">
                     <p className="text-2xl"><span className="font-extrabold text-2xl">FRASER</span>PLUS</p>
                     <p className="font-extrabold text-xl w-[200px]">Buy now. Pay later. Earn Rewards</p>

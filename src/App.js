@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ModelsProvider } from "./context/Context";
+import { UserProvider } from "./context/ContextCustomers";
 
 
 // components
@@ -11,13 +11,14 @@ import Hero from "./components/Hero";
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
+import { ProductsProvider } from "./context/ContextProducts";
 
 
 
 function App() {
 
 
-  let [signedIn, setSignedIn] = useState(false)
+  let [signedIn, setSignedIn] = useState(true)
   let [user, setUser] = useState('');
 
 
@@ -34,19 +35,21 @@ function App() {
 
   return (
 
-    <ModelsProvider>
-      <BrowserRouter>
-        <Navbar signedIn={signedIn} />
-        <Routes>
-          {/* <Route path="/" element={<Hero />}></Route> */}
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login user={user} setUser={setUser} setSignedIn={setSignedIn} />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/gallery" element={<Products />}></Route>
-          <Route path="/product/:id" element={<Product />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </ModelsProvider>
+    <UserProvider>
+      <ProductsProvider>
+        <BrowserRouter>
+          <Navbar signedIn={signedIn} setSignedIn={setSignedIn} />
+          <Routes>
+            {/* <Route path="/" element={<Hero />}></Route> */}
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/customers/login" element={<Login user={user} setUser={setUser} setSignedIn={setSignedIn} />}></Route>
+            {/* <Route path="/register" element={<Register />}></Route> */}
+            <Route path="/gallery" element={<Products />}></Route>
+            <Route path="/product/:id" element={<Product />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </ProductsProvider>
+    </UserProvider>
 
   );
 }
