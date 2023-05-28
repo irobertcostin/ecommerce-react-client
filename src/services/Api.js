@@ -100,7 +100,7 @@ export default class Data {
 
             if (data.status === 202) {
                 let resp = await data.json();
-                message.success(`Welcome back ${resp.user.full_name}`, [5], console.log(resp))
+                message.success(`Welcome back ${resp.user.full_name}`, [5], console.log("Logged in"))
                 return resp
             } else {
                 let resp = await data.json();

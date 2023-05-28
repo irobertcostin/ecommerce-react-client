@@ -3,8 +3,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from "./images/logo.png"
 import { useNavigate } from 'react-router-dom'
-
-
+import { useEffect, useContext } from 'react'
+import Cookies from 'js-cookie';
 
 
 
@@ -16,10 +16,23 @@ export default function Navbar({ signedIn, setSignedIn }) {
 
 
 
+
     let handleSignOut = () => {
         console.log(signedIn);
         setSignedIn(false)
     }
+
+
+    let handleAutoLogin = () => {
+
+
+        if (Cookies.get("authenticatedUser")) {
+            // setUser(JSON.parse(Cookies.get("authenticatedUser")));
+            setSignedIn(true)
+        }
+    }
+
+
 
 
 
@@ -65,6 +78,15 @@ export default function Navbar({ signedIn, setSignedIn }) {
         navigate("/")
     }
 
+
+
+
+    useEffect(() => {
+
+
+        handleAutoLogin()
+
+    }, [signedIn])
 
 
     return (

@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 
 
-export default function Login() {
+export default function Login({ setSignedIn }) {
 
 
     let navigate = useNavigate();
@@ -52,6 +52,7 @@ export default function Login() {
 
             Cookies.set("authenticatedUser", JSON.stringify(attempt));
             setUser(attempt)
+            setSignedIn(true)
 
         }
     }

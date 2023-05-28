@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import Cookies from 'js-cookie';
-
+import { message } from "antd";
 
 
 
@@ -19,9 +19,9 @@ export const UserProvider = ({ children }) => {
 
         if (Cookies.get("authenticatedUser")) {
             setUser(JSON.parse(Cookies.get("authenticatedUser")));
+            message.success(`Welcome back ${JSON.parse(Cookies.get("authenticatedUser")).user.full_name}`)
+
         }
-
-
 
     }, [])
 
