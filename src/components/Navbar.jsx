@@ -18,7 +18,6 @@ export default function Navbar({ signedIn, setSignedIn }) {
 
 
     let handleSignOut = () => {
-        console.log(signedIn);
         setSignedIn(false)
     }
 
