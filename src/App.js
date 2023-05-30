@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import { UserProvider } from "./context/ContextCustomers";
-
+import PrivateRoute from "./components/PrivateRoute";
 
 // components
 import Home from "./components/Home";
@@ -28,8 +28,6 @@ function App() {
 
   useEffect(() => {
 
-
-
   }, [user])
 
 
@@ -41,12 +39,25 @@ function App() {
       <UserProvider>
         <Navbar signedIn={signedIn} setSignedIn={setSignedIn} />
         <Routes>
-          {/* <Route path="/" element={<Hero />}></Route> */}
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/customers/login" element={<Login user={user} setUser={setUser} setSignedIn={setSignedIn} />}></Route>
-          {/* <Route path="/register" element={<Register />}></Route> */}
-          <Route path="/gallery" element={<Products />}></Route>
-          <Route path="/product/:id" element={<Product />}></Route>
+
+          {/* <PrivateRoute path="/" element={<Home />} /> */}
+
+
+
+          <Route element={<PrivateRoute />}>
+
+            <Route path="/" element={<Home />} />
+
+
+          </Route>
+
+
+          <Route path="/customers/login" element={<Login user={user} setUser={setUser} setSignedIn={setSignedIn} />} />
+
+
+
+
+
         </Routes>
       </UserProvider>
     </BrowserRouter>

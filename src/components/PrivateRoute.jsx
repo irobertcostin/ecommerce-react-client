@@ -1,7 +1,18 @@
-import React, { useContext, useEffect } from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
 import { ContextUser } from '../context/ContextCustomers'
-import { useParams, Route, Redirect } from 'react-router-dom'
+import React, { useContext } from 'react';
 
 
 
+const PrivateRoutes = () => {
 
+    let [user, setUser] = useContext(ContextUser);
+
+
+
+    return (
+        user ? <Outlet /> : <Navigate to='/customers/login' />
+    )
+}
+
+export default PrivateRoutes;
