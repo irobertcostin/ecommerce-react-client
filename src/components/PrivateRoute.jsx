@@ -1,28 +1,18 @@
+import { Navigate, Outlet } from 'react-router-dom'
+import { ContextUser } from '../context/ContextCustomers'
 import React, { useContext } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { ContextUser } from '../context/ContextCustomers';
-import Login from './Login';
 
 
 
+const PrivateRoutes = () => {
 
-export default function PrivateRoute({ children, ...rest }) {
-    const { user } = useContext(ContextUser);
-
-
+    let [user, setUser] = useContext(ContextUser);
 
 
 
     return (
-        <Routes>
-            <Route
-                {...rest}
-                element={user ? (
-                    children
-                ) : (
-                    <Navigate to="/customers/login" replace element={<Login />} />
-                )}
-            />
-        </Routes>
-    );
+        user ? <Outlet /> : <Navigate to='/customers/login' />
+    )
 }
+
+export default PrivateRoutes;
