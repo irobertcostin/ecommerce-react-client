@@ -4,6 +4,7 @@ import fraser from "./images/frasers-plus-min.png"
 import { useNavigate } from "react-router-dom";
 
 
+
 export default function Home() {
 
     let navigate = useNavigate();
@@ -15,6 +16,12 @@ export default function Home() {
         navigate(`/gallery`)
 
     }
+
+
+
+
+
+
 
 
     return (
@@ -52,6 +59,7 @@ export default function Home() {
                     <img src={fraser}></img>
                 </div>
             </div>
+
 
 
 

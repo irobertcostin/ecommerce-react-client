@@ -13,23 +13,31 @@ export const ProductsProvider = ({ children }) => {
     const [products, setProducts] = useState();
 
 
-    if (!products) {
+    // if (products.length == 0 || products === undefined) {
+    //     console.log("aici");
+    //     let api = new Data();
+    //     api.getProducts().then(response => {
+    //         setProducts(response);
+    //     })
 
-        let api = new Data();
-        api.getProducts().then(response => {
-            setProducts(response);
-        })
-
-    }
-
-
+    // }
 
 
 
-    // useEffect(() => {
 
 
-    // }, [products])
+    useEffect(() => {
+        // if (products.length === 0) {
+
+        //     let api = new Data();
+        //     api.getProducts().then(response => {
+        //         setProducts(response);
+        //     })
+
+        // }
+        console.log(products);
+
+    }, [products])
 
 
     return (
