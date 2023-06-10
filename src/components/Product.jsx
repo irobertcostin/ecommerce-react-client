@@ -6,6 +6,9 @@ import Data from '../services/Api'
 import DotLoader from "react-spinners/ClipLoader";
 import { ContextCart } from '../context/ContextCart'
 import Cookies from "js-cookie";
+import { addCart, eraseCart } from "../services/CartUtils";
+
+
 
 
 export default function Product() {
@@ -29,11 +32,48 @@ export default function Product() {
     }
 
 
-    let addToCart = async () => {
+    let addToCart = () => {
 
-        cart.cart.push(myProduct)
-        Cookies.set("authenticatedUserCart", JSON.stringify(cart));
-        setCart(cart)
+
+
+
+
+        // console.log(cart);
+        // console.log(myProduct);
+
+
+        let item = {
+
+            id: myProduct.id,
+            name: myProduct.name,
+            price: myProduct.price,
+            url: myProduct.url,
+            quantity: 1
+        }
+        if (cart.length == 0) {
+            let x = [];
+            x.push(item)
+            setCart(x)
+            Cookies.set("authenticatedUserCart", JSON.stringify(x));
+        } else {
+
+            let x = addCart(cart, item);
+            setCart(x)
+            Cookies.set("authenticatedUserCart", JSON.stringify(x));
+
+        }
+
+
+
+
+
+
+        // setCart(x);
+
+        // Cookies.set("authenticatedUserCart", JSON.stringify(x));
+        // setCart(cart)
+
+
     }
 
 

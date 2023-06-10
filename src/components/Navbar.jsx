@@ -9,6 +9,10 @@ import Cart from './Cart'
 import { Button, Drawer, Radio, Space } from 'antd';
 import cartlogo from "../components/images/cart.png"
 
+import { HomeOutlined, UserOutlined, ShoppingCartOutlined, OrderedListOutlined } from '@ant-design/icons';
+import { Breadcrumb } from 'antd';
+import { CartProvider } from '../context/ContextCart'
+
 
 
 
@@ -34,12 +38,13 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
 
 
-
     let handleSignOut = () => {
 
         setSignedIn(false)
         Cookies.remove("authenticatedUser");
         navigate("/customers/login")
+        Cookies.remove("authenticatedUserCart");
+        setUser("")
         onClose();
     }
 
@@ -101,8 +106,8 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
     useEffect(() => {
         handleAutoLogin()
-        console.log(signedIn);
-        console.log(user);
+        // console.log(signedIn);
+        // console.log(user);
     }, [signedIn])
 
 
@@ -172,32 +177,6 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
                                                                 <img className="h-12 w-12 rounded-full" src={userr.imageUrl} alt="" />
                                                             </Menu.Button>
                                                         </div>
-                                                        {/* <Transition
-                                                            as={Fragment}
-                                                            enter="transition ease-out duration-100"
-                                                            enterFrom="transform opacity-0 scale-95"
-                                                            enterTo="transform opacity-100 scale-100"
-                                                            leave="transition ease-in duration-75"
-                                                            leaveFrom="transform opacity-100 scale-100"
-                                                            leaveTo="transform opacity-0 scale-95"
-                                                        >
-                                                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                                {
-                                                                    !signedIn
-                                                                        ?
-                                                                        <div>
-                                                                            <button onClick={goLogin} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Log in</button>
-                                                                        </div>
-                                                                        :
-                                                                        <div className='w-full flex flex-col px-1 py-2 justify-center items-center gap-4'>
-                                                                            <button className='w-full hover:bg-slate-200  ease-in-out duration-300'>Your Profile</button>
-                                                                            <button className='w-full hover:bg-slate-200  ease-in-out duration-300' onClick={handleSignOut}>Sign Out</button>
-                                                                            <button className='w-full hover:bg-slate-200  ease-in-out duration-300' onClick={showDrawer}>Cart</button>
-
-                                                                        </div>
-                                                                }
-                                                            </Menu.Items>
-                                                        </Transition> */}
                                                     </Menu>
                                                 </div>
                                         }
@@ -340,9 +319,48 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
                         </Space>
                     }
                 >
-                    <div>
+                    <div className=' w-full flex justify-center items-center  text-lg'>
 
-                        {/* Contect here  */}
+                        <Breadcrumb
+                            separator="/"
+                            className=' w-full flex justify-center mb-2'
+                            items={[
+                                {
+                                    title: (
+                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center'>
+                                            <ShoppingCartOutlined className="" />
+                                            <span>Cart</span>
+                                        </div>
+                                    )
+                                },
+                                {
+
+                                    title: (
+                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center'>
+                                            <UserOutlined />
+                                            <span>Info</span>
+                                        </div>
+                                    ),
+                                }, {
+
+                                    title: (
+                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center'>
+                                            <OrderedListOutlined />
+                                            <span>Orders</span>
+                                        </div>
+                                    ),
+                                }
+                            ]}
+                        />
+
+
+
+
+                    </div>
+
+                    <div className='w-full mt-4 border'>
+
+                        <Cart setOpen={setOpen} />
 
                     </div>
                 </Drawer>
