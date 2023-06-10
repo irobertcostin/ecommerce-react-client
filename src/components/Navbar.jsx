@@ -12,7 +12,7 @@ import cartlogo from "../components/images/cart.png"
 
 
 
-export default function Navbar({ signedIn, setSignedIn, setUser }) {
+export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
 
     let navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
     let handleSignOut = () => {
 
         setSignedIn(false)
-        // Cookies.remove("authenticatedUser");
+        Cookies.remove("authenticatedUser");
         navigate("/customers/login")
         onClose();
     }
@@ -46,9 +46,10 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
 
     let handleAutoLogin = () => {
         if (Cookies.get("authenticatedUser")) {
+
             setUser(JSON.parse(Cookies.get("authenticatedUser")));
             setSignedIn(true)
-            navigate("/")
+            goHome();
         }
     }
 
@@ -56,8 +57,8 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
 
 
 
-    const user = {
-        name: 'Tim Tok',
+    const userr = {
+        name: 'My Code User',
         email: 'tom@example.com',
         imageUrl:
             'https://cdn.discordapp.com/attachments/1114282751735111690/1114303693140000768/token-logo.png',
@@ -100,10 +101,15 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
 
     useEffect(() => {
         handleAutoLogin()
+        console.log(signedIn);
+        console.log(user);
     }, [signedIn])
 
 
 
+    useEffect(() => {
+        // console.log(user);
+    }, [user])
 
 
 
@@ -144,23 +150,29 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
                                     </div>
                                     <div className="hidden md:block">
                                         {
-                                            !signedIn
+                                            !user
                                                 ?
                                                 <></>
                                                 :
 
                                                 <div className="ml-4 flex items-center md:ml-6 ">
 
+                                                    <div className="ml-3 flex flex-col text-end">
+                                                        <div className="text-sm font-medium leading-none text-gray-400">Welcome back,</div>
+                                                        <div className="text-base font-medium leading-none text-white">{user.user.full_name}</div>
 
+                                                    </div>
 
                                                     <Menu as="div" className="relative ml-3">
+
+
                                                         <div>
-                                                            <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none">
-                                                                <span className="sr-only">Open user menu</span>
-                                                                <img className="h-12 w-12 rounded-full" src={user.imageUrl} alt="" />
+                                                            <Menu.Button onClick={showDrawer} className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none">
+
+                                                                <img className="h-12 w-12 rounded-full" src={userr.imageUrl} alt="" />
                                                             </Menu.Button>
                                                         </div>
-                                                        <Transition
+                                                        {/* <Transition
                                                             as={Fragment}
                                                             enter="transition ease-out duration-100"
                                                             enterFrom="transform opacity-0 scale-95"
@@ -175,8 +187,6 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
                                                                         ?
                                                                         <div>
                                                                             <button onClick={goLogin} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Log in</button>
-                                                                            {/* <button onClick={goRegister} className='bg-[#CCFF00] px-3 py-2 text-lg font-extrabold rounded-md'>Register</button> */}
-
                                                                         </div>
                                                                         :
                                                                         <div className='w-full flex flex-col px-1 py-2 justify-center items-center gap-4'>
@@ -187,7 +197,7 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
                                                                         </div>
                                                                 }
                                                             </Menu.Items>
-                                                        </Transition>
+                                                        </Transition> */}
                                                     </Menu>
                                                 </div>
                                         }
@@ -220,7 +230,7 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
                                 </div>
                             </div>
 
-                            <Disclosure.Panel className="md:hidden ">
+                            <Disclosure.Panel className="md:hidden">
                                 {
                                     signedIn
                                         ?
@@ -252,38 +262,37 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
                                             <div className="border-t border-gray-700 pb-3 pt-4">
 
 
-                                                <div className="flex items-center px-5 ">
-                                                    <div className="flex-shrink-0">
-                                                        <img className="h-12 w-12 rounded-full" src={user.imageUrl} alt="" />
-                                                    </div>
-                                                    <div className="ml-3 flex flex-col">
-                                                        <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                                                        <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
-                                                    </div>
-                                                    <div className='w-full flex items-center justify-end  gap-5'>
+                                                {
+                                                    !user ? <></>
+                                                        : <div className="flex items-center px-5 ">
+                                                            <div className="flex-shrink-0">
+                                                                <img className="h-12 w-12 rounded-full" src={userr.imageUrl} alt="" />
+                                                            </div>
+                                                            <div className="ml-3 flex flex-col">
+                                                                <div className="text-base font-medium leading-none text-white">{user.user.full_name}</div>
+                                                                <div className="text-sm font-medium leading-none text-gray-400">{user.user.email}</div>
+                                                            </div>
+                                                            <div className='w-full flex items-center justify-end  gap-5'>
 
-                                                        <button className=' text-slate-300 hover:text-white w-10 h-10  ease-in-out duration-300' onClick={showDrawer}>
+                                                                {/* <button className=' text-slate-300 hover:text-white w-10 h-10  ease-in-out duration-300' >
                                                             <img src={cartlogo}>
 
                                                             </img>
-                                                        </button>
-                                                        {/* <button
-                                                            onClick={handleSignOut}
-                                                            className="flex justify-center rounded-md bg-[#CCFF00] px-3 py-1 text-sm font-semibold leading-6  shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                                        >
-                                                            Sign Out
                                                         </button> */}
-                                                    </div>
-                                                </div>
+                                                                <button
+                                                                    onClick={showDrawer}
+                                                                    className="flex justify-center rounded-md bg-[#CCFF00] px-3 py-1 text-sm font-semibold leading-6  shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                                >
+                                                                    My account
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                }
 
 
 
 
-                                                <div className="mt-3 space-y-1 px-2">
-                                                    <div className='w-full flex flex-col px-1 py-2 justify-center items-center gap-4'>
-                                                        <button className='w-full  text-slate-300 hover:text-white ease-in-out duration-300'>Your Profile</button>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </>
                                         :
@@ -304,12 +313,14 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
 
 
                 <Drawer
-                    title="User section"
+                    title="My account"
+
                     placement={placement}
                     width={375}
                     // onClose={onClose}
                     open={open}
                     closeIcon={""}
+
                     extra={
                         <Space>
                             <button
@@ -329,9 +340,11 @@ export default function Navbar({ signedIn, setSignedIn, setUser }) {
                         </Space>
                     }
                 >
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    <div>
+
+                        {/* Contect here  */}
+
+                    </div>
                 </Drawer>
 
             </div>
