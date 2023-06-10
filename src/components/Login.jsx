@@ -49,7 +49,6 @@ export default function Login({ setSignedIn }) {
         if (email !== "" && password !== "") {
             let api = new Data();
             let attempt = await api.login(email, password)
-
             Cookies.set("authenticatedUser", JSON.stringify(attempt));
             setUser(attempt)
             setSignedIn(true)
@@ -186,7 +185,7 @@ export default function Login({ setSignedIn }) {
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     )
 }
