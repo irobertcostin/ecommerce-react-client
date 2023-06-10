@@ -53,7 +53,7 @@ export default function Login({ setSignedIn }) {
             Cookies.set("authenticatedUser", JSON.stringify(attempt));
             setUser(attempt)
             setSignedIn(true)
-
+            goHome();
         }
     }
 
@@ -92,12 +92,12 @@ export default function Login({ setSignedIn }) {
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <div onClick={goHome} className=" w-[25px] cursor-pointer">
+                {/* <div onClick={goHome} className=" w-[25px] cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
 
-                </div>
+                </div> */}
 
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
@@ -106,7 +106,7 @@ export default function Login({ setSignedIn }) {
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                        Sign in to your account
+                        Sign in to an account
                     </h2>
                 </div>
 
@@ -164,8 +164,8 @@ export default function Login({ setSignedIn }) {
                         </div>
                     </form>
 
-                    <div className="mt-10 text-sm text-gray-500 bg-[#CCFF00] bg-opacity-80 p-4">
-                        <p className="text-md font-semibold">Use this login data: </p>
+                    <div className="mt-10 text-sm text-gray-500 bg-slate-100 rounded-md bg-opacity-80 p-4">
+                        <p className="text-md font-semibold w-full text-center mb-4">Use this login data: </p>
                         <div className=" p-4 flex flex-col-2 justify-between items-center flex-wrap">
                             {/* {customers.map((item) => (
                                 <div key={item.name} className="w-full flex justify-between items-center">
@@ -186,7 +186,7 @@ export default function Login({ setSignedIn }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
