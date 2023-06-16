@@ -67,4 +67,23 @@ function totalAmount(cart) {
 }
 
 
-export { addCart, eraseCart, totalAmount }
+function totalAmountItems(cart) {
+
+
+    // console.log(cart);
+
+    let sum = 0;
+
+    cart.forEach(element => {
+
+
+        sum += element.quantity;
+
+
+    })
+
+    return sum;
+}
+
+
+export { addCart, eraseCart, totalAmount, totalAmountItems }

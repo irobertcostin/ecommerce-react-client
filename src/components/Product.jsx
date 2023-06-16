@@ -95,7 +95,7 @@ export default function Product() {
                         <div className="pt-6">
                             {/* Image gallery */}
                             <div className="mx-auto mt-6 max-w-sm sm:px-6 lg:grid lg:max-w-md  lg:gap-x-8 lg:px-8">
-                                <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                                <div className="aspect-h-4 aspect-w-4 lg:aspect-h-4 lg:aspect-w-4 sm:overflow-hidden sm:rounded-lg">
                                     <img
                                         src={myProduct.url}
 

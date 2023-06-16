@@ -1,38 +1,31 @@
 import { useContext, useEffect, useState, useRef } from "react"
-import { ContextCart } from "../context/ContextCart"
-import CartRow from "./CartRow";
-import { totalAmount, totalAmountItems } from "../services/CartUtils";
-import Data from "../services/Api";
 import { ContextUser } from "../context/ContextCustomers";
+import Data from "../services/Api";
 
 
 
 
-
-export default function Cart({ setOpen }) {
-
-    let [cart, setCart] = useContext(ContextCart);
-
-    let [user, setUser] = useContext(ContextUser);
-
-    // how to use ref 
-    let [totalCartPrice, setTotalCartPrice] = useState(0);
+export default function Orders() {
 
 
-    let onClose = () => {
-        setOpen(false);
-    };
+    let [userOrders, setUserOrders] = useState([])
 
+    let [user, setUser] = useContext(ContextUser)
 
     let api = new Data();
 
 
 
-    let checkout = async () => {
+    let checkOrders = async () => {
 
 
-        await api.newCart(cart, user.user.customerId)
+        let orders = await api.getOrders()
 
+        console.log(orders);
+        console.log(user.user.customerId);
+        // console.log(user);
+        let x = orders.filter(e => e.customer_id == user.user.customerId)
+        setUserOrders(x);
 
 
     }
@@ -41,17 +34,9 @@ export default function Cart({ setOpen }) {
 
     useEffect(() => {
 
-    }, [cart])
+        checkOrders();
 
-
-    useEffect(() => {
-
-        if (cart.length > 0) {
-            setTotalCartPrice(totalAmount(cart))
-        }
-
-
-    }, [cart])
+    }, [])
 
 
 
@@ -64,11 +49,14 @@ export default function Cart({ setOpen }) {
 
 
             <div className="w-full h-[60vh] overflow-y-scroll">
-                <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-2">
+                <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-12">
                     {
-                        cart &&
-                        cart.map(item => (
-                            <CartRow item={item} key={item.id} />
+                        userOrders &&
+                        userOrders.map(item => (
+                            <li key={item.id} className="w-full flex justify-between items-center px-2 py-2 cursor-pointer">
+                                <p>Order id: {item.id}</p>
+                                <p>Value: ${item.amount}</p>
+                            </li>
                         ))
                     }
                 </ul>
@@ -77,7 +65,7 @@ export default function Cart({ setOpen }) {
 
 
 
-
+            {/*             
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
@@ -109,7 +97,7 @@ export default function Cart({ setOpen }) {
                             </div>
                     }
                 </>
-            </div>
+            </div> */}
         </>
 
 

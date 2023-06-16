@@ -11,7 +11,12 @@ import cartlogo from "../components/images/cart.png"
 
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, OrderedListOutlined } from '@ant-design/icons';
 import { Breadcrumb } from 'antd';
-import { CartProvider } from '../context/ContextCart'
+import { ContextCart } from '../context/ContextCart'
+import { totalAmount, totalAmountItems } from "../services/CartUtils";
+
+
+
+import Orders from './Orders'
 
 
 
@@ -21,7 +26,7 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
     let navigate = useNavigate();
 
-
+    let [totalCartObj, setTotalCartObj] = useState(0);
 
 
     const [open, setOpen] = useState(false);
@@ -33,6 +38,9 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
     const onClose = () => {
         setOpen(false);
     };
+
+
+    let [cart, setCart] = useContext(ContextCart);
 
 
 
@@ -106,9 +114,15 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
     useEffect(() => {
         handleAutoLogin()
-        // console.log(signedIn);
-        // console.log(user);
     }, [signedIn])
+
+    useEffect(() => {
+
+        if (cart.length > 0) {
+            setTotalCartObj(totalAmountItems(cart))
+        }
+
+    }, [cart.length])
 
 
 
@@ -161,6 +175,11 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
                                                 :
 
                                                 <div className="ml-4 flex items-center md:ml-6 ">
+
+                                                    <button onClick={showDrawer} className='relative flex justify-center items-center text-center mr-4'>
+                                                        <ShoppingCartOutlined className="text-white text-2xl" />
+                                                        <p className='bg-red-500 px-1.5 text-sm text-white rounded-full absolute -top-1 -right-3'>{totalCartObj}</p>
+                                                    </button>
 
                                                     <div className="ml-3 flex flex-col text-end">
                                                         <div className="text-sm font-medium leading-none text-gray-400">Welcome back,</div>
@@ -253,17 +272,12 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
                                                             </div>
                                                             <div className='w-full flex items-center justify-end  gap-5'>
 
-                                                                {/* <button className=' text-slate-300 hover:text-white w-10 h-10  ease-in-out duration-300' >
-                                                            <img src={cartlogo}>
+                                                                <button onClick={showDrawer} className='relative flex justify-center items-center text-center mr-2'>
+                                                                    <ShoppingCartOutlined className="text-white text-3xl" />
+                                                                    <p className='bg-red-500 px-1.5 text-sm text-white rounded-full absolute -top-1 font-extrabold -right-3'>{totalCartObj}</p>
 
-                                                            </img>
-                                                        </button> */}
-                                                                <button
-                                                                    onClick={showDrawer}
-                                                                    className="flex justify-center rounded-md bg-[#CCFF00] px-3 py-1 text-sm font-semibold leading-6  shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                                                >
-                                                                    My account
                                                                 </button>
+
                                                             </div>
                                                         </div>
                                                 }
@@ -327,7 +341,8 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
                             items={[
                                 {
                                     title: (
-                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center'>
+                                        <div className='cursor-pointer flex gap-2 mr-4 justify-center items-center'>
+                                            <p className='bg-red-500 text-white font-extrabold rounded-full px-1.5'>{totalCartObj}</p>
                                             <ShoppingCartOutlined className="" />
                                             <span>Cart</span>
                                         </div>
@@ -360,7 +375,8 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
                     <div className='w-full mt-4 border'>
 
-                        <Cart setOpen={setOpen} />
+                        {/* <Cart setOpen={setOpen} /> */}
+                        <Orders />
 
                     </div>
                 </Drawer>

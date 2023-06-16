@@ -47,6 +47,35 @@ export default class Data {
     }
 
 
+
+
+
+    async getOrders() {
+
+        try {
+            let data = await this.api('/orders')
+
+            if (data.status === 200) {
+                let resp = await data.json();
+
+                return resp;
+            } else {
+                let resp = await data.json();
+                message.error(resp.error.message, [3], console.log(""))
+            }
+
+        } catch (error) {
+            message.error(error, [3], console.log(error))
+        }
+
+
+    }
+
+
+
+
+
+
     async getCustomers() {
 
         try {
@@ -108,6 +137,30 @@ export default class Data {
                 message.error(resp, [3], console.log(resp))
             }
 
+        } catch (error) {
+            console.log(error);
+        }
+
+
+    }
+
+
+
+
+    async newCart(cart, id) {
+
+        try {
+            let data = await this.api('/customers/cart', "POST", { customer_id: id, customer_cart: cart })
+
+            if (data.status === 200) {
+                let resp = await data.json();
+                // message.success(`Welcome back ${resp.user.full_name}`, [5], console.log("Logged in"))
+                console.log(resp);
+                return resp
+            } else {
+                let resp = await data.json();
+                message.error(resp, [3], console.log(resp))
+            }
         } catch (error) {
             console.log(error);
         }
