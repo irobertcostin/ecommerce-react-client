@@ -20,6 +20,7 @@ export const CartProvider = ({ children }) => {
             // console.log(JSON.parse(Cookies.get("authenticatedUserCart")));
 
             let x = JSON.parse(Cookies.get("authenticatedUserCart"));
+            console.log(x);
 
         }
 

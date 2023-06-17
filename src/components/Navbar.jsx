@@ -13,35 +13,47 @@ import { HomeOutlined, UserOutlined, ShoppingCartOutlined, OrderedListOutlined }
 import { Breadcrumb } from 'antd';
 import { ContextCart } from '../context/ContextCart'
 import { totalAmount, totalAmountItems } from "../services/CartUtils";
-
-
-
 import Orders from './Orders'
+import UserInfo from './UserInfo'
 
 
 
-
-export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
+export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCartObj, setTotalCartObj }) {
 
 
     let navigate = useNavigate();
-
-    let [totalCartObj, setTotalCartObj] = useState(0);
-
-
+    let [cart, setCart] = useContext(ContextCart);
     const [open, setOpen] = useState(false);
     const [placement, setPlacement] = useState('right');
 
     const showDrawer = () => {
+        setTotalCartObj(totalAmountItems(cart))
         setOpen(true);
+
     };
     const onClose = () => {
         setOpen(false);
     };
 
 
-    let [cart, setCart] = useContext(ContextCart);
+    const CART = "cart";
+    const USERINFO = 'info';
+    const ORDERS = "orders"
 
+    let [page, setPage] = useState()
+
+
+    let goCart = () => {
+        setPage(CART)
+    }
+
+    let goOrders = () => {
+        setPage(ORDERS)
+    }
+
+    let goInfo = () => {
+        setPage(USERINFO)
+    }
 
 
 
@@ -90,9 +102,9 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
 
 
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(' ')
-    }
+    // function classNames(...classes) {
+    //     return classes.filter(Boolean).join(' ')
+    // }
 
 
 
@@ -118,11 +130,14 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
     useEffect(() => {
 
+
+
         if (cart.length > 0) {
+            console.log(cart.length);
             setTotalCartObj(totalAmountItems(cart))
         }
 
-    }, [cart.length])
+    }, [totalCartObj])
 
 
 
@@ -310,7 +325,6 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
                     placement={placement}
                     width={375}
-                    // onClose={onClose}
                     open={open}
                     closeIcon={""}
 
@@ -341,27 +355,28 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
                             items={[
                                 {
                                     title: (
-                                        <div className='cursor-pointer flex gap-2 mr-4 justify-center items-center'>
+                                        <div className='cursor-pointer flex gap-2 mr-4 justify-center items-center' onClick={goCart}>
                                             <p className='bg-red-500 text-white font-extrabold rounded-full px-1.5'>{totalCartObj}</p>
-                                            <ShoppingCartOutlined className="" />
-                                            <span>Cart</span>
+
+                                            <ShoppingCartOutlined className=" text-black" />
+                                            <span className=" text-black">Cart</span>
                                         </div>
                                     )
                                 },
                                 {
 
                                     title: (
-                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center'>
-                                            <UserOutlined />
-                                            <span>Info</span>
+                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center' onClick={goInfo}>
+                                            <UserOutlined className=" text-black" />
+                                            <span className=" text-black">Info</span>
                                         </div>
                                     ),
                                 }, {
 
                                     title: (
-                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center'>
-                                            <OrderedListOutlined />
-                                            <span>Orders</span>
+                                        <div className='cursor-pointer flex gap-2 mx-4 justify-center items-center' onClick={goOrders}>
+                                            <OrderedListOutlined className=" text-black" />
+                                            <span className=" text-black">Orders</span>
                                         </div>
                                     ),
                                 }
@@ -373,10 +388,25 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user }) {
 
                     </div>
 
-                    <div className='w-full mt-4 border'>
+                    <div className='w-full mt-4 pl-3'>
+                        {(() => {
+                            switch (page) {
+                                case CART:
+                                    return <Cart setOpen={setOpen} />;
 
-                        {/* <Cart setOpen={setOpen} /> */}
-                        <Orders />
+
+                                case USERINFO:
+                                    return <UserInfo />;
+
+                                case ORDERS:
+                                    return <Orders />
+
+
+
+                                default:
+                                    return <Cart />
+                            }
+                        })()}
 
                     </div>
                 </Drawer>

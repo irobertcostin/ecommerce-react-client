@@ -1,19 +1,22 @@
 import { useContext, useEffect, useState, useRef } from "react"
 import { ContextUser } from "../context/ContextCustomers";
 import Data from "../services/Api";
-
+import DotLoader from "react-spinners/DotLoader";
+import OrderDetails from "./OrderDetails";
 
 
 
 export default function Orders() {
 
 
-    let [userOrders, setUserOrders] = useState([])
+    let [userOrders, setUserOrders] = useState([]);
 
-    let [user, setUser] = useContext(ContextUser)
+    let [user, setUser] = useContext(ContextUser);
 
     let api = new Data();
 
+    let [showOrder, setShowOrder] = useState();
+    let [isOrderLoading, setIsOrderLoading] = useState(false);
 
 
     let checkOrders = async () => {
@@ -32,11 +35,25 @@ export default function Orders() {
 
 
 
+
+
     useEffect(() => {
 
         checkOrders();
 
     }, [])
+
+    useEffect(() => {
+
+        console.log(showOrder);
+
+    }, [showOrder])
+
+    useEffect(() => {
+
+        // console.log(showOrder);
+
+    }, [isOrderLoading])
 
 
 
@@ -48,12 +65,12 @@ export default function Orders() {
         <>
 
 
-            <div className="w-full h-[60vh] overflow-y-scroll">
+            <div className="w-full h-[45vh] md:h-[49vh] overflow-y-scroll">
                 <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-12">
                     {
                         userOrders &&
                         userOrders.map(item => (
-                            <li key={item.id} className="w-full flex justify-between items-center px-2 py-2 cursor-pointer">
+                            <li key={item.id} onClick={() => { setShowOrder(item.id); setIsOrderLoading(true) }} className="w-full flex justify-between items-center px-2 py-2 cursor-pointer">
                                 <p>Order id: {item.id}</p>
                                 <p>Value: ${item.amount}</p>
                             </li>
@@ -65,39 +82,18 @@ export default function Orders() {
 
 
 
-            {/*             
-            <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                <div className="flex justify-between text-base font-medium text-gray-900">
-                    <p>Subtotal</p>
-                    <p>${totalCartPrice}</p>
-                </div>
-                <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                <>
-                    {
-                        totalCartPrice > 0 ?
-                            <>
-                                <div className="mt-6 w-full flex justify-center">
-                                    <button onClick={checkout} className="flex items-center justify-center rounded-md border border-transparent bg-indigo-950 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#ccff00] hover:text-black duration-300 ease-in-out">Checkout</button>
-                                </div>
-                                <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                                    <p>
-                                        or
-                                        <button onClick={onClose} type="button" className="font-medium ml-2 text-indigo-950 hover:text-indigo-500">
-                                            Continue Shopping
-                                            <span aria-hidden="true"> &rarr;</span>
-                                        </button>
-                                    </p>
-                                </div>
-                            </>
-                            :
 
-
-                            <div className="mt-6 flex justify-center">
-                                <button className="flex items-center justify-center rounded-md border border-transparent bg-indigo-950 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#ccff00] hover:text-black duration-300 ease-in-out">Continue shopping</button>
-                            </div>
-                    }
-                </>
-            </div> */}
+            <div className=" h-[28vh] shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center items-center">
+                {
+                    !showOrder
+                        ?
+                        <div className="w-full text-center ">
+                            <p className="text-[12px]">Select an order to display</p>
+                        </div>
+                        :
+                        <OrderDetails showOrder={showOrder} setIsOrderLoading={setIsOrderLoading} isOrderLoading={isOrderLoading} />
+                }
+            </div>
         </>
 
 

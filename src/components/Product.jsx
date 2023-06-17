@@ -6,12 +6,12 @@ import Data from '../services/Api'
 import DotLoader from "react-spinners/ClipLoader";
 import { ContextCart } from '../context/ContextCart'
 import Cookies from "js-cookie";
-import { addCart, eraseCart } from "../services/CartUtils";
+import { addCart, eraseCart, totalAmountItems } from "../services/CartUtils";
 
 
 
 
-export default function Product() {
+export default function Product({ setTotalCartObj }) {
 
     let [myProduct, setMyProduct] = useState()
 
@@ -35,13 +35,6 @@ export default function Product() {
     let addToCart = () => {
 
 
-
-
-
-        // console.log(cart);
-        // console.log(myProduct);
-
-
         let item = {
 
             id: myProduct.id,
@@ -50,31 +43,61 @@ export default function Product() {
             url: myProduct.url,
             quantity: 1
         }
-        if (cart.length == 0) {
-            let x = [];
-            x.push(item)
-            setCart(x)
-            Cookies.set("authenticatedUserCart", JSON.stringify(x));
+
+
+
+        let check = false;
+
+
+
+        if (cart.length > 0) {
+
+            cart.forEach(element => {
+
+
+                if (element.id == myProduct.id) {
+                    check = true;
+
+                    element.quantity = element.quantity + item.quantity;
+                    setCart(cart)
+                    setTotalCartObj(totalAmountItems(cart))
+                    Cookies.set("authenticatedUserCart", JSON.stringify(cart));
+
+                }
+            });
+
+
+            if (check === false) {
+
+                cart.push(item)
+                setCart(cart)
+                Cookies.set("authenticatedUserCart", JSON.stringify(cart));
+                setTotalCartObj(totalAmountItems(cart))
+            }
+
         } else {
 
-            let x = addCart(cart, item);
-            setCart(x)
-            Cookies.set("authenticatedUserCart", JSON.stringify(x));
 
+            cart.push(item)
+            setCart(cart)
+            Cookies.set("authenticatedUserCart", JSON.stringify(cart));
+            setTotalCartObj(totalAmountItems(cart))
         }
 
 
 
 
-
-
-        // setCart(x);
-
-        // Cookies.set("authenticatedUserCart", JSON.stringify(x));
-        // setCart(cart)
-
-
     }
+
+    useEffect(() => {
+        getProdById()
+
+    }, [])
+
+
+    useEffect(() => {
+        setTotalCartObj(totalAmountItems(cart))
+    }, [cart])
 
 
     useEffect(() => {

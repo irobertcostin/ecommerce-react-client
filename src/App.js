@@ -28,6 +28,7 @@ function App() {
 
   let [signedIn, setSignedIn] = useState(false)
   let [user, setUser] = useState("");
+  let [totalCartObj, setTotalCartObj] = useState();
   // let [cart, setCart] = useContext(ContextCart);
 
 
@@ -37,6 +38,10 @@ function App() {
   }, [user])
 
 
+  useEffect(() => {
+
+  }, [totalCartObj])
+
   return (
 
 
@@ -44,7 +49,7 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <CartProvider>
-          <Navbar signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser} user={user} />
+          <Navbar signedIn={signedIn} setSignedIn={setSignedIn} setUser={setUser} user={user} totalCartObj={totalCartObj} setTotalCartObj={setTotalCartObj} />
           <Routes>
 
             {/* <PrivateRoute path="/" element={<Home />} /> */}
@@ -55,7 +60,7 @@ function App() {
 
               <Route path="/" element={<Home user={user} />} />
               <Route path="/gallery" element={<Products />} />
-              <Route path="/product/:id" element={<Product />} />
+              <Route path="/product/:id" element={<Product setTotalCartObj={setTotalCartObj} />} />
 
             </Route>
 
@@ -81,14 +86,18 @@ export default App;
 
 
 
-// lista din new order 
-// sa ajunga din front end in backend 
-// si sa ramana in cos 
-// useContext cos
-//
 
 
-// de doua ori mesaj confirmare welcome back 
-// daca e user in context, de ce sa mai faca login 
-// daca sign out, sa stearga si context si cookies 
+// cannot send props from navbar to cart to cartRow 
+// pagina pentru orders -> order details 
+// conturi access copy to clipboard
+// parte administrator 
+// delete users 
+// delete orders 
+// delete order details 
+// add single products
+// create users
+// actualizare cart items , cart total price live
+// cart price with limit in front-end and backend
+
 

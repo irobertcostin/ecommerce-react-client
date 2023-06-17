@@ -86,4 +86,22 @@ function totalAmountItems(cart) {
 }
 
 
-export { addCart, eraseCart, totalAmount, totalAmountItems }
+function increaseAmount(item) {
+
+    item.quantity += 1;
+
+
+}
+
+function decreaseAmount(item) {
+
+    console.log(`before: ${item.quantity}`);
+
+    item.quantity -= 1;
+
+    console.log(`after: ${item.quantity}`);
+
+}
+
+
+export { addCart, eraseCart, totalAmount, totalAmountItems, increaseAmount, decreaseAmount }

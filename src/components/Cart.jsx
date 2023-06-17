@@ -4,23 +4,24 @@ import CartRow from "./CartRow";
 import { totalAmount, totalAmountItems } from "../services/CartUtils";
 import Data from "../services/Api";
 import { ContextUser } from "../context/ContextCustomers";
+import Cookies from 'js-cookie';
 
 
 
 
-
-export default function Cart({ setOpen }) {
+export default function Cart({ setOpen, setTotalCartObj }) {
 
     let [cart, setCart] = useContext(ContextCart);
 
     let [user, setUser] = useContext(ContextUser);
 
     // how to use ref 
-    let [totalCartPrice, setTotalCartPrice] = useState(0);
+    let [totalCartPrice, setTotalCartPrice] = useState();
 
 
     let onClose = () => {
         setOpen(false);
+
     };
 
 
@@ -29,13 +30,11 @@ export default function Cart({ setOpen }) {
 
 
     let checkout = async () => {
-
-
         await api.newCart(cart, user.user.customerId)
-
-
-
+        setCart([]);
+        Cookies.set("authenticatedUserCart", JSON.stringify(cart));
     }
+
 
 
 
@@ -48,10 +47,11 @@ export default function Cart({ setOpen }) {
 
         if (cart.length > 0) {
             setTotalCartPrice(totalAmount(cart))
+            console.log(setTotalCartObj);
         }
 
 
-    }, [cart])
+    }, [cart.length])
 
 
 
@@ -63,12 +63,12 @@ export default function Cart({ setOpen }) {
         <>
 
 
-            <div className="w-full h-[60vh] overflow-y-scroll">
+            <div className="w-full h-[40vh] md:h-[60vh] overflow-y-scroll">
                 <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-2">
                     {
                         cart &&
                         cart.map(item => (
-                            <CartRow item={item} key={item.id} />
+                            <CartRow item={item} key={item.id} setTotalCartPrice={setTotalCartPrice} />
                         ))
                     }
                 </ul>
@@ -105,7 +105,7 @@ export default function Cart({ setOpen }) {
 
 
                             <div className="mt-6 flex justify-center">
-                                <button className="flex items-center justify-center rounded-md border border-transparent bg-indigo-950 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#ccff00] hover:text-black duration-300 ease-in-out">Continue shopping</button>
+                                <button onClick={onClose} className="flex items-center justify-center rounded-md border border-transparent bg-indigo-950 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#ccff00] hover:text-black duration-300 ease-in-out">Continue shopping</button>
                             </div>
                     }
                 </>
