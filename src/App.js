@@ -99,5 +99,6 @@ export default App;
 // create users
 // actualizare cart items , cart total price live
 // cart price with limit in front-end and backend
+// checkout successfully , or redirect to another page 
 
 

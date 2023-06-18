@@ -1,21 +1,36 @@
 
 import React, { useEffect } from "react";
 import DotLoader from "react-spinners/DotLoader";
-
+import Data from "../services/Api";
 
 
 
 export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoading }) {
 
 
+    let api = new Data();
+
+    let retrieveDetails = async () => {
+
+        await api.getOrderDetailsByOrderId(showOrder);
+
+        // console.log(orderDetails);
+
+        setIsOrderLoading(false)
+        // console.log(isOrderLoading);
+
+    }
 
 
 
     useEffect(() => {
 
-        console.log(isOrderLoading);
-        setIsOrderLoading(false)
-    }, [isOrderLoading])
+        if (showOrder) {
+            retrieveDetails();
+            // comment
+        }
+
+    }, [showOrder])
 
 
     useEffect(() => {

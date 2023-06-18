@@ -5,7 +5,7 @@ import { totalAmount, totalAmountItems } from "../services/CartUtils";
 import Data from "../services/Api";
 import { ContextUser } from "../context/ContextCustomers";
 import Cookies from 'js-cookie';
-
+import { Button, Empty } from 'antd';
 
 
 
@@ -32,7 +32,7 @@ export default function Cart({ setOpen, setTotalCartObj }) {
     let checkout = async () => {
         await api.newCart(cart, user.user.customerId)
         setCart([]);
-        Cookies.set("authenticatedUserCart", JSON.stringify(cart));
+        Cookies.set("authenticatedUserCart", JSON.stringify([]));
     }
 
 
@@ -66,10 +66,29 @@ export default function Cart({ setOpen, setTotalCartObj }) {
             <div className="w-full h-[40vh] md:h-[60vh] overflow-y-scroll">
                 <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-2">
                     {
-                        cart &&
-                        cart.map(item => (
-                            <CartRow item={item} key={item.id} setTotalCartPrice={setTotalCartPrice} />
-                        ))
+                        cart
+                            ?
+                            <>
+                                {
+
+                                    cart.map(item => (
+                                        <CartRow item={item} key={item.id} setTotalCartPrice={setTotalCartPrice} />
+                                    ))
+                                }
+                            </>
+                            :
+                            <Empty
+                                image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                                imageStyle={{ height: 200 }}
+                                description={
+                                    <span>
+                                        No orders
+                                    </span>
+                                }
+                            >
+
+                            </Empty>
+
                     }
                 </ul>
             </div>

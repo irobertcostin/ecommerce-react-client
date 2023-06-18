@@ -61,6 +61,52 @@ export default class Data {
                 return resp;
             } else {
                 let resp = await data.json();
+                message.error(resp, [3], console.log(resp))
+            }
+
+        } catch (error) {
+            message.error(error, [3], console.log(error))
+        }
+
+
+    }
+
+
+    async getOrderDetailsByOrderId(id) {
+
+        try {
+            let data = await this.api(`/order-details/orderId=${id}`)
+
+            if (data.status === 200) {
+                let resp = await data.json();
+                console.log(resp);
+                return resp;
+            } else {
+                let resp = await data.json();
+                message.error(resp, [3], console.log(resp))
+            }
+
+        } catch (error) {
+            message.error(error, [3], console.log(error))
+        }
+
+
+    }
+
+
+
+    async getOrdersByCustomerId(id) {
+
+        try {
+            let data = await this.api(`/orders/customer-id=${id}`)
+
+            if (data.status === 200) {
+                let resp = await data.json();
+
+                return resp;
+            } else {
+                let resp = await data.json();
+
                 message.error(resp.error.message, [3], console.log(""))
             }
 
@@ -70,6 +116,7 @@ export default class Data {
 
 
     }
+
 
 
 
