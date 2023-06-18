@@ -13,11 +13,8 @@ export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoad
     let retrieveDetails = async () => {
 
         await api.getOrderDetailsByOrderId(showOrder);
-
-        // console.log(orderDetails);
-
         setIsOrderLoading(false)
-        // console.log(isOrderLoading);
+
 
     }
 
@@ -27,7 +24,7 @@ export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoad
 
         if (showOrder) {
             retrieveDetails();
-            // comment
+
         }
 
     }, [showOrder])
