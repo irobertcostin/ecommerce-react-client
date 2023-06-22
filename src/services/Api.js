@@ -79,7 +79,7 @@ export default class Data {
 
             if (data.status === 200) {
                 let resp = await data.json();
-                console.log(resp);
+                // console.log(resp);
                 return resp;
             } else {
                 let resp = await data.json();

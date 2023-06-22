@@ -117,7 +117,7 @@ export default function Orders() {
                     userOrders
                         ?
                         <>
-                            <div className=" h-[28vh] shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center items-center">
+                            <div className=" h-[28vh] mt-8 md:mt-12  shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center items-center mr-3">
                                 {
                                     !showOrder
                                         ?
