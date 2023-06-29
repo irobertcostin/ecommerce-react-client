@@ -172,16 +172,20 @@ export default function Login({ setSignedIn }) {
                                     <p onClick={handleCopyClick}>{item.password}</p>
                                 </div>
                             ))} */}
-                            <p onClick={handleCopyClick}>ugrowden0@etsy.com</p>
-                            <p>UBiSYoL</p>
-                            <p>droskruge1@acquirethisname.com</p>
-                            <p>xTSJ1w</p>
-                            <p>udhallbord2@cnet.com</p>
-                            <p>CdynVsgurG</p>
-                            <p>mklimkov3@huffingtonpost.com</p>
-                            <p>MrgpBOD2</p>
-                            <p>achue4@example.com</p>
-                            <p>VzVNKfEzrZ7k</p>
+                            <p onClick={handleCopyClick}>gbellew0@amazon.co.jp</p>
+                            <p>xI9mTrM</p>
+
+                            <p>fcarlan1@yale.edu</p>
+                            <p>uB7mlEO!HM</p>
+
+                            <p>mdracksford2@tripod.com</p>
+                            <p>bS53hk?jy=6</p>
+
+                            <p>urhymer3@blog.com</p>
+                            <p>zQ4mmu38</p>
+
+                            <p>ddaily4@blogs.com</p>
+                            <p>jH49gO64ox</p>
                         </div>
                     </div>
                 </div>

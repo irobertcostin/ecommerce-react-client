@@ -59,7 +59,7 @@ export default function CartRow(item) {
 
     useEffect(() => {
         getProd();
-
+        console.log(cart);
     }, [item])
 
 

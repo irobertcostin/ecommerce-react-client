@@ -47,7 +47,7 @@ export default function Cart({ setOpen, setTotalCartObj }) {
 
         if (cart.length > 0) {
             setTotalCartPrice(totalAmount(cart))
-            console.log(setTotalCartObj);
+
         }
 
 

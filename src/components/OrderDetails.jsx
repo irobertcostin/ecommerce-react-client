@@ -15,24 +15,73 @@ export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoad
 
     let [details, setDetails] = useState();
 
+
+
+    let retrieveProducts = async (id) => {
+        let obj = await api.getProductsById(id)
+        return obj;
+    }
+
+
+
+
+
     let retrieveDetails = async () => {
 
         let x = await api.getOrderDetailsByOrderId(showOrder);
         if (x.info) {
             setNoDetails(true)
             setIsOrderLoading(false)
-            console.log(x.info);
         } else {
             setNoDetails(false)
             setIsOrderLoading(false)
-            setDetails(x);
+            let arr = []
 
+
+            function toBase64(data) {
+                let binary = '';
+                const bytes = new Uint8Array(data);
+                const len = bytes.byteLength;
+                for (let i = 0; i < len; i++) {
+                    binary += String.fromCharCode(bytes[i]);
+                }
+                return btoa(binary);
+            }
+
+
+            x.forEach(element => {
+                let newEl = {
+                    id: element.id,
+                    price: element.price,
+                    quantity: element.quantity,
+                    product_id: element.product_id,
+                    order_id: element.order_id,
+                    product_pic: ""
+                }
+                retrieveProducts(element.product_id)
+                    .then(
+                        element2 => {
+
+                            function toBase64(data) {
+                                let binary = '';
+                                const bytes = new Uint8Array(data);
+                                const len = bytes.byteLength;
+
+                                for (let i = 0; i < len; i++) {
+                                    binary += String.fromCharCode(bytes[i]);
+                                }
+                                return btoa(binary);
+                            }
+
+                            newEl.product_pic = `data:image/png;base64,${toBase64(element2.picture.data)}`
+
+
+                        }
+                    )
+                arr.push(newEl)
+            });
+            setDetails(arr);
         }
-
-
-
-
-
     }
 
 
@@ -47,11 +96,7 @@ export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoad
     }, [showOrder])
 
 
-    useEffect(() => {
 
-        console.log(details);
-
-    }, [details])
 
 
 
@@ -78,14 +123,19 @@ export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoad
                                 :
 
 
-                                <div className=" w-full h-[100%] py-4 flex overflow-x-scroll">
+                                <div className=" w-full h-[100%] flex overflow-x-scroll">
 
                                     {
                                         details.map(element => {
-                                            return (
-                                                <div key={element.product_id} className="border min-w-[28vh] ml-2 p-1 mr-2">
 
-                                                    <img className=""></img>
+
+
+
+
+                                            return (
+                                                <div key={element.product_id} className="  min-w-[28vh] ml-5  flex flex-col justify-center items-center">
+
+                                                    <img className=" w-48  mx-auto h-44  mb-4" src={element.product_pic} alt="missing image" ></img>
 
                                                     <div className="flex justify-between px-6 text-xs">
 

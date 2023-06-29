@@ -49,6 +49,30 @@ export default class Data {
 
 
 
+    async getProductsById(id) {
+
+        try {
+            let data = await this.api(`/products/${id}`)
+
+
+            if (data.status === 200) {
+                let resp = await data.json();
+
+                return resp;
+            } else {
+                let resp = await data.json();
+                message.error(resp.error.message, [3], console.log(""))
+            }
+
+        } catch (error) {
+            message.error(error, [3], console.log(error))
+        }
+
+
+    }
+
+
+
 
     async getOrders() {
 
