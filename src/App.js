@@ -7,7 +7,7 @@ import { CartProvider } from "./context/ContextCart";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Hero from "./components/Hero";
+
 import Products from "./components/Products";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
@@ -87,7 +87,11 @@ export default App;
 
 
 
-
+// no image in orders
+// no image in cart
+// cart items not updated when checkout 
+// subtotal not updated when checkout 
+// missing info page 
 // cannot send props from navbar to cart to cartRow 
 // pagina pentru orders -> order details 
 // conturi access copy to clipboard
@@ -100,5 +104,5 @@ export default App;
 // actualizare cart items , cart total price live
 // cart price with limit in front-end and backend
 // checkout successfully , or redirect to another page 
-
+// after checking out, a success message, page, something 
 

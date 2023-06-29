@@ -21,14 +21,39 @@ export default function Products() {
     let getProducts = async () => {
         let api = new Data();
         let prod = await api.getProducts();
-        setProducts(prod)
+
+
+
+        function toBase64(data) {
+            let binary = '';
+            const bytes = new Uint8Array(data);
+            const len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary);
+        }
+
+
+
+        let x = prod;
+
+        x.forEach(element => {
+            element.picture = `data:image/png;base64,${toBase64(element.picture.data)}`
+        });
+
+
+        setProducts(x)
+
 
     }
 
 
+
+
     let goToProduct = (element) => {
 
-        // console.log(element.target.id);
+
         navigate(`/product/${element.target.id}`)
 
     }
@@ -69,7 +94,7 @@ export default function Products() {
                                         <div key={product.id} className="group">
                                             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                                 <img
-                                                    src={product.url}
+                                                    src={product.picture}
                                                     id={product.id}
                                                     // alt={product.imageAlt}
                                                     className="h-full w-full object-cover object-center group-hover:opacity-75 cursor-pointer"

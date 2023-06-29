@@ -7,7 +7,7 @@ import DotLoader from "react-spinners/ClipLoader";
 import { ContextCart } from '../context/ContextCart'
 import Cookies from "js-cookie";
 import { addCart, eraseCart, totalAmountItems } from "../services/CartUtils";
-
+import base64 from "base-64"
 
 
 
@@ -16,6 +16,8 @@ export default function Product({ setTotalCartObj }) {
     let [myProduct, setMyProduct] = useState()
 
     let [cart, setCart] = useContext(ContextCart)
+
+    let [prodPic, setProdPic] = useState("");
 
     let id = useParams().id
 
@@ -27,7 +29,23 @@ export default function Product({ setTotalCartObj }) {
 
         let x = data.filter(e => e.id == id)
         // console.log(x[0]);
-        setMyProduct(x[0])
+        setMyProduct(x[0]);
+
+
+        function toBase64(data) {
+            let binary = '';
+            const bytes = new Uint8Array(data);
+            const len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary);
+        }
+
+
+        setProdPic(`data:image/png;base64,${toBase64(x[0].picture.data)}`);
+
+
 
     }
 
@@ -89,10 +107,21 @@ export default function Product({ setTotalCartObj }) {
 
     }
 
-    useEffect(() => {
-        getProdById()
 
-    }, [])
+
+
+
+
+
+
+    useEffect(() => {
+
+
+
+
+
+
+    }, [myProduct]);
 
 
     useEffect(() => {
@@ -114,14 +143,13 @@ export default function Product({ setTotalCartObj }) {
                 !myProduct ? <div className='w-full min-h-[80vh] flex justify-center items-center'>
                     <DotLoader color="#CCFF00" />
                 </div> :
-                    <div className="bg-white">
+                    <div className="bg-white md:min-h-[70.7vh]  lg:min-h-[74.45vh]">
                         <div className="pt-6">
                             {/* Image gallery */}
                             <div className="mx-auto mt-6 max-w-sm sm:px-6 lg:grid lg:max-w-md  lg:gap-x-8 lg:px-8">
                                 <div className="aspect-h-4 aspect-w-4 lg:aspect-h-4 lg:aspect-w-4 sm:overflow-hidden sm:rounded-lg">
                                     <img
-                                        src={myProduct.url}
-
+                                        src={prodPic}
                                         className="h-full w-full object-cover object-center"
                                     />
                                 </div>
@@ -138,7 +166,7 @@ export default function Product({ setTotalCartObj }) {
 
                                     <button
                                         onClick={addToCart}
-                                        className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-[#CCFF00]  px-8 py-3 text-base font-medium text-black  focus:outline-none focus:ring-2 focus:ring-indigo-950 focus:ring-offset-2"
+                                        className="mt-6 mb flex w-full items-center justify-center rounded-md border border-transparent bg-[#CCFF00]  px-8 py-3 text-base font-medium text-black  focus:outline-none focus:ring-2 focus:ring-indigo-950 focus:ring-offset-2"
                                     >
                                         Add to cart
                                     </button>

@@ -26,7 +26,7 @@ export default function Home() {
 
 
     return (
-        <>
+        <div className="flex flex-col">
 
 
             <div className="home-comm h-[470px] w-full flex flex-col justify-end items-center">
@@ -41,7 +41,7 @@ export default function Home() {
 
             </div>
 
-            <div className="w-full bg-gradient-to-r from-black to-indigo-900 mt-4 h-[200px] md:justify-center md:items-center flex justify-between">
+            <div className="w-full mt-4 mb-10 bg-gradient-to-r from-black to-indigo-900 h-[200px] md:justify-center md:items-center flex justify-between">
                 <div className="text-white px-4 py-2  flex flex-col">
                     <p className="text-2xl"><span className="font-extrabold text-2xl">FRASER</span>PLUS</p>
                     <p className="font-extrabold text-xl w-[200px]">Buy now. Pay later. Earn Rewards</p>
@@ -64,6 +64,6 @@ export default function Home() {
 
 
 
-        </>
+        </div>
     )
 }

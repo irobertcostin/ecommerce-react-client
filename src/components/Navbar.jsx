@@ -83,8 +83,6 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
 
 
     const userr = {
-        name: 'My Code User',
-        email: 'tom@example.com',
         imageUrl:
             'https://cdn.discordapp.com/attachments/1114282751735111690/1114303693140000768/token-logo.png',
     }
@@ -93,11 +91,7 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
 
 
 
-    const userNavigation = [
-        { name: 'Your Profile', href: '' },
-        { name: 'Settings', href: '' },
-        { name: 'Sign out', onClick: handleSignOut },
-    ]
+
 
 
 
@@ -166,16 +160,13 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
                                                     <div className="ml-10 flex items-baseline space-x-4">
                                                         <button
                                                             onClick={goHome}
-                                                            className='text-slate-300 hover:text-white'
+                                                            className='text-slate-300 hover:text-white ease-in-out duration-300'
                                                         >Home</button>
                                                         <button
                                                             onClick={goProducts}
-                                                            className='text-slate-300 hover:text-white'
+                                                            className='text-slate-300 hover:text-white ease-in-out duration-300'
                                                         >Shop</button>
-                                                        <button
-                                                            onClick={goProducts}
-                                                            className='text-slate-300 hover:text-white'
-                                                        >Products</button>
+
                                                     </div>
                                                     :
                                                     <></>
@@ -254,19 +245,19 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
 
                                                 <button
                                                     onClick={goHome}
-                                                    className='text-slate-300  hover:text-white m-0 p-0'
+                                                    className='text-slate-300  hover:text-white m-0 p-0 ease-in-out duration-300'
                                                 >Home
                                                 </button>
                                                 <button
                                                     onClick={goProducts}
-                                                    className='text-slate-300  hover:text-white m-0 p-0'
+                                                    className='text-slate-300  hover:text-white m-0 p-0 ease-in-out duration-300'
                                                 >Shop
                                                 </button>
-                                                <button
+                                                {/* <button
                                                     onClick={goProducts}
                                                     className='text-slate-300  hover:text-white m-0 p-0'
                                                 >Products
-                                                </button>
+                                                </button> */}
                                             </div>
 
 
@@ -396,7 +387,7 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
 
 
                                 case USERINFO:
-                                    return <UserInfo />;
+                                    return <UserInfo user={user} />;
 
                                 case ORDERS:
                                     return <Orders />
