@@ -53,16 +53,32 @@ export default function Product({ setTotalCartObj }) {
     let addToCart = () => {
 
 
+
+        function toBase64(data) {
+            let binary = '';
+            const bytes = new Uint8Array(data);
+            const len = bytes.byteLength;
+            for (let i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary);
+        }
+
+
+        let x = `data:image/png;base64,${toBase64(myProduct.picture.data)}`
+
+
+
         let item = {
 
             id: myProduct.id,
             name: myProduct.name,
             price: myProduct.price,
-            url: myProduct.url,
+            url: x,
             quantity: 1
         }
 
-
+        console.log(item);
 
         let check = false;
 
@@ -119,7 +135,7 @@ export default function Product({ setTotalCartObj }) {
 
 
 
-
+        console.log(myProduct);
 
     }, [myProduct]);
 

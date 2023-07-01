@@ -9,7 +9,7 @@ export default function UserInfo({ user }) {
 
     return (
         <>
-            <div className="w-full border p-4">
+            <div className="w-full border p-4 flex flex-col gap-4">
                 <p>Name: {user.user.full_name}</p>
                 <p>E-mail address: {user.user.email}</p>
                 <p>Customer ID: {user.user.customerId}</p>
