@@ -90,20 +90,6 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
 
 
 
-
-
-
-
-
-
-    // function classNames(...classes) {
-    //     return classes.filter(Boolean).join(' ')
-    // }
-
-
-
-
-
     let goLogin = () => {
         navigate("/customers/login")
     }
@@ -112,6 +98,10 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
     }
     let goHome = () => {
         navigate("/")
+    }
+
+    let goAdmin = () => {
+        navigate("/admin")
     }
 
 
@@ -166,6 +156,10 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
                                                             onClick={goProducts}
                                                             className='text-slate-300 hover:text-white ease-in-out duration-300'
                                                         >Shop</button>
+                                                        <button
+                                                            onClick={goAdmin}
+                                                            className='text-slate-300 hover:text-white ease-in-out duration-300'
+                                                        >Admin</button>
 
                                                     </div>
                                                     :
@@ -253,11 +247,10 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
                                                     className='text-slate-300  hover:text-white m-0 p-0 ease-in-out duration-300'
                                                 >Shop
                                                 </button>
-                                                {/* <button
-                                                    onClick={goProducts}
-                                                    className='text-slate-300  hover:text-white m-0 p-0'
-                                                >Products
-                                                </button> */}
+                                                <button
+                                                    onClick={goAdmin}
+                                                    className='text-slate-300 hover:text-white ease-in-out duration-300'
+                                                >Admin</button>
                                             </div>
 
 

@@ -17,7 +17,7 @@ import { message } from "antd";
 import { ContextUser } from "./context/ContextCustomers";
 import { ContextCart } from "./context/ContextCart";
 import Footer from "../src/components/Footer";
-
+import Admin from "./components/Admin";
 
 
 
@@ -61,7 +61,7 @@ function App() {
               <Route path="/" element={<Home user={user} />} />
               <Route path="/gallery" element={<Products />} />
               <Route path="/product/:id" element={<Product setTotalCartObj={setTotalCartObj} />} />
-
+              <Route path="/admin" element={<Admin />} />
             </Route>
 
 
@@ -88,13 +88,11 @@ export default App;
 
 
 // no image in orders
-// no image in cart
-// cart items not updated when checkout 
 // subtotal not updated when checkout 
-// missing info page 
 // cannot send props from navbar to cart to cartRow 
 // pagina pentru orders -> order details 
 // conturi access copy to clipboard
+
 // parte administrator 
 // delete users 
 // delete orders 
@@ -105,4 +103,4 @@ export default App;
 // cart price with limit in front-end and backend
 // checkout successfully , or redirect to another page 
 // after checking out, a success message, page, something 
-
+//better display of the 
