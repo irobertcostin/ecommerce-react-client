@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import Data from '../../services/Api'
 import DotLoader from "react-spinners/ClipLoader";
 import { ContextCart } from '../../context/ContextCart'
-import Cookies from "js-cookie";
+
 import { addCart, eraseCart, totalAmountItems } from "../../utils/CartUtils";
 import base64 from "base-64"
 
@@ -67,8 +67,6 @@ export default function Product({ setTotalCartObj }) {
 
         let x = `data:image/png;base64,${toBase64(myProduct.picture.data)}`
 
-
-
         let item = {
 
             id: myProduct.id,
@@ -77,46 +75,11 @@ export default function Product({ setTotalCartObj }) {
             url: x,
             quantity: 1
         }
+        setCart(addCart(cart, item))
 
-        console.log(item);
-
-        let check = false;
-
+        setTotalCartObj(totalAmountItems(cart))
 
 
-        if (cart.length > 0) {
-
-            cart.forEach(element => {
-
-
-                if (element.id == myProduct.id) {
-                    check = true;
-
-                    element.quantity = element.quantity + item.quantity;
-                    setCart(cart)
-                    setTotalCartObj(totalAmountItems(cart))
-                    Cookies.set("authenticatedUserCart", JSON.stringify(cart));
-
-                }
-            });
-
-
-            if (check === false) {
-
-                cart.push(item)
-                setCart(cart)
-                Cookies.set("authenticatedUserCart", JSON.stringify(cart));
-                setTotalCartObj(totalAmountItems(cart))
-            }
-
-        } else {
-
-
-            cart.push(item)
-            setCart(cart)
-            Cookies.set("authenticatedUserCart", JSON.stringify(cart));
-            setTotalCartObj(totalAmountItems(cart))
-        }
 
 
 

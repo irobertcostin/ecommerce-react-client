@@ -69,12 +69,6 @@ export default function OrderItemDetails({ element }) {
 
 
 
-    // receive an incomplete order detail
-    // fetch the product id for product_id
-    // convert the blob 
-    // return the element
-
-
 
 
     return (
@@ -82,7 +76,7 @@ export default function OrderItemDetails({ element }) {
             {
                 !item
                     ?
-                    <DotLoader />
+                    <></>
                     :
 
                     <>

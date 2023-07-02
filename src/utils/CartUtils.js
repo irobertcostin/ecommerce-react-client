@@ -1,4 +1,4 @@
-
+import Cookies from "js-cookie";
 
 
 
@@ -19,21 +19,38 @@ function addCart(cart, item) {
         cart.push(item);
     }
 
+
     return cart;
 
 }
 
 
-function eraseQuantify(cart, item) {
-
-    let arr = cart.filter(e => e.id !== item.id)
 
 
+function decreaseCart(cart, item) {
 
 
-    return arr;
+
+    cart.forEach(element => {
+        if (element.id == item.id) {
+
+            if (element.quantity > 1) {
+                element.quantity -= 1;
+
+            }
+
+        }
+    });
+
+
+
+
+    return cart;
 
 }
+
+
+
 
 
 
@@ -55,13 +72,19 @@ function totalAmount(cart) {
 
     let sum = 0;
 
-    cart.forEach(element => {
+    if (cart.length == 0) {
+        return sum
+    } else {
+        cart.forEach(element => {
 
-        let a = element.quantity * element.price
-        sum += a;
+            let a = element.quantity * element.price
+            sum += a;
 
 
-    })
+        })
+    }
+
+
 
     return sum;
 }
@@ -93,15 +116,7 @@ function increaseAmount(item) {
 
 }
 
-function decreaseAmount(item) {
-
-    console.log(`before: ${item.quantity}`);
-
-    item.quantity -= 1;
-
-    console.log(`after: ${item.quantity}`);
-
-}
 
 
-export { addCart, eraseCart, totalAmount, totalAmountItems, increaseAmount, decreaseAmount }
+
+export { addCart, eraseCart, totalAmount, totalAmountItems, increaseAmount, decreaseCart }

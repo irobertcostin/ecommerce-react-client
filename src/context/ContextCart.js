@@ -17,14 +17,10 @@ export const CartProvider = ({ children }) => {
 
         if (Cookies.get("authenticatedUserCart")) {
             setCart(JSON.parse(Cookies.get("authenticatedUserCart")));
-            // console.log(JSON.parse(Cookies.get("authenticatedUserCart")));
 
-            let x = JSON.parse(Cookies.get("authenticatedUserCart"));
-            console.log(x);
 
         }
 
-        // console.log(cart);
 
     }, [])
 

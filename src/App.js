@@ -87,11 +87,13 @@ export default App;
 
 
 
-// no image in orders
+
+
 // subtotal not updated when checkout 
 // cannot send props from navbar to cart to cartRow 
 // pagina pentru orders -> order details 
 // conturi access copy to clipboard
+
 
 // parte administrator 
 // delete users 
@@ -99,6 +101,8 @@ export default App;
 // delete order details 
 // add single products
 // create users
+
+
 // actualizare cart items , cart total price live
 // cart price with limit in front-end and backend
 // checkout successfully , or redirect to another page 
