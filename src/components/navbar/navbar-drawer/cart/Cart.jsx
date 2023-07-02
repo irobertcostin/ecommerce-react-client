@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState, useRef } from "react"
-import { ContextCart } from "../context/ContextCart"
+import { ContextCart } from "../../../../context/ContextCart"
 import CartRow from "./CartRow";
-import { totalAmount, totalAmountItems } from "../services/CartUtils";
-import Data from "../services/Api";
-import { ContextUser } from "../context/ContextCustomers";
+import { totalAmount, totalAmountItems } from "../../../../utils/CartUtils";
+import Data from "../../../../services/Api";
+import { ContextUser } from "../../../../context/ContextCustomers";
 import Cookies from 'js-cookie';
 import { Button, Empty } from 'antd';
 

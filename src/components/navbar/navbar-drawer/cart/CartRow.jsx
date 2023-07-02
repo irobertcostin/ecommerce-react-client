@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, useRef } from "react"
 import DotLoader from "react-spinners/DotLoader";
-import { eraseCart, increaseAmount, decreaseAmount, totalAmountItems, totalAmount } from "../services/CartUtils";
-import { ContextCart } from "../context/ContextCart";
+import { eraseCart, increaseAmount, decreaseAmount, totalAmountItems, totalAmount } from "../../../../utils/CartUtils";
+import { ContextCart } from "../../../../context/ContextCart";
 import Cookies from "js-cookie";
 import { initPickerPanelToken } from "antd/es/date-picker/style";
 

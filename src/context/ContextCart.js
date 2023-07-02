@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import { addCart, eraseCart } from "../services/CartUtils";
+import { addCart, eraseCart } from "../utils/CartUtils";
 
 export const ContextCart = createContext();
 

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState, useRef } from "react"
-import { ContextUser } from "../context/ContextCustomers";
-import Data from "../services/Api";
+import { ContextUser } from "../../../../context/ContextCustomers";
+import Data from "../../../../services/Api";
 
-import OrderDetails from "./OrderDetails";
+import OrderDetails from "./sub-order/OrderDetails";
 import { Button, Empty } from 'antd';
 
 
@@ -43,31 +43,6 @@ export default function Orders() {
         checkOrders();
 
     }, [])
-
-
-
-    useEffect(() => {
-
-        console.log(userOrders);
-
-    }, [userOrders])
-
-
-
-
-    useEffect(() => {
-
-        console.log(showOrder);
-
-    }, [showOrder])
-
-    useEffect(() => {
-
-        // console.log(showOrder);
-
-    }, [isOrderLoading])
-
-
 
 
 

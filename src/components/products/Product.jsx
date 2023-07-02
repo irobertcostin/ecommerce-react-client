@@ -2,11 +2,11 @@ import { useState, useEffect, useContext } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import { useParams } from 'react-router-dom'
-import Data from '../services/Api'
+import Data from '../../services/Api'
 import DotLoader from "react-spinners/ClipLoader";
-import { ContextCart } from '../context/ContextCart'
+import { ContextCart } from '../../context/ContextCart'
 import Cookies from "js-cookie";
-import { addCart, eraseCart, totalAmountItems } from "../services/CartUtils";
+import { addCart, eraseCart, totalAmountItems } from "../../utils/CartUtils";
 import base64 from "base-64"
 
 

@@ -4,10 +4,10 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import React, { useState, useEffect } from 'react'
 
-import AdmDetails from "../components/admin-components/AdmDetails"
-import AdmUsers from "../components/admin-components/AdmUsers"
-import AdmProducts from "../components/admin-components/AdmProducts"
-import AdmOrders from "../components/admin-components/AdmOrders"
+import AdmDetails from "./admin-comp/AdmDetails"
+import AdmUsers from "./admin-comp/AdmUsers"
+import AdmProducts from "./admin-comp/AdmProducts"
+import AdmOrders from "./admin-comp/AdmOrders"
 
 
 
