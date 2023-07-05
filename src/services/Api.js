@@ -158,6 +158,30 @@ export default class Data {
     }
 
 
+    async getCustomerByEmail(id) {
+
+        try {
+            let data = await this.api(`/customers/id=`)
+
+            if (data.status === 200) {
+                let resp = await data.json();
+                return resp;
+            } else {
+                let resp = await data.json();
+                message.error(resp.error.message, [3], console.log(""))
+            }
+
+        } catch (error) {
+            message.error(error, [3], console.log(error))
+        }
+
+
+    }
+
+
+
+
+
 
     async getCustomerByEmail(email) {
 
