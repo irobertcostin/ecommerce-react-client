@@ -1,6 +1,6 @@
-import Navbar from "./Navbar"
-import Products from "./Products"
-import fraser from "./images/frasers-plus-min.png"
+import Navbar from "../navbar/Navbar"
+import Products from "../products/Products"
+import fraser from "../images/frasers-plus-min.png"
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 

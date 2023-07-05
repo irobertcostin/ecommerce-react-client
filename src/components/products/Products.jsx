@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react"
 
-import ProductPhoto from "./images/Product-Photo.jpg"
+import ProductPhoto from "../images/Product-Photo.jpg"
 import { useNavigate } from "react-router-dom";
 
-import Data from "../services/Api";
+import Data from "../../services/Api";
 import DotLoader from "react-spinners/DotLoader";
 
 

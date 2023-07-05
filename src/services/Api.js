@@ -3,10 +3,6 @@ import { message } from "antd";
 
 export default class Data {
 
-
-
-
-
     api(path, method = "GET", body = null) {
         const url = "http://localhost:4242/api/v1" + path;
 
@@ -140,12 +136,6 @@ export default class Data {
 
 
     }
-
-
-
-
-
-
 
     async getCustomers() {
 

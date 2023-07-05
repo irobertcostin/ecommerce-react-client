@@ -4,20 +4,20 @@ import { UserProvider } from "./context/ContextCustomers";
 import PrivateRoute from "./components/PrivateRoute";
 import { CartProvider } from "./context/ContextCart";
 // components
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Home from "./components/home/Home";
+import Login from "./components/login/Login";
+import Register from "./components/login/Register";
 
-import Products from "./components/Products";
-import Navbar from "./components/Navbar";
-import Product from "./components/Product";
+import Products from "./components/products/Products";
+import Navbar from "./components/navbar/Navbar";
+import Product from "./components/products/Product";
 import { ProductsProvider } from "./context/ContextProducts";
 import Cookies from 'js-cookie';
 import { message } from "antd";
 import { ContextUser } from "./context/ContextCustomers";
 import { ContextCart } from "./context/ContextCart";
-import Footer from "../src/components/Footer";
-import Admin from "./components/Admin";
+import Footer from "./components/home/Footer";
+import Admin from "./components/admin/Admin";
 
 
 
@@ -87,11 +87,13 @@ export default App;
 
 
 
-// no image in orders
+
+
 // subtotal not updated when checkout 
 // cannot send props from navbar to cart to cartRow 
 // pagina pentru orders -> order details 
 // conturi access copy to clipboard
+
 
 // parte administrator 
 // delete users 
@@ -99,8 +101,14 @@ export default App;
 // delete order details 
 // add single products
 // create users
+
+
 // actualizare cart items , cart total price live
 // cart price with limit in front-end and backend
 // checkout successfully , or redirect to another page 
 // after checking out, a success message, page, something 
 //better display of the 
+
+
+// restructurare foldere 
+// componente si subcomponente

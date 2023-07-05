@@ -1,20 +1,20 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import logo from "./images/logo.png"
+import logo from "../images/logo.png"
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useContext, useState } from 'react'
 import Cookies from 'js-cookie';
-import Cart from './Cart'
+import Cart from './navbar-drawer/cart/Cart'
 import { Button, Drawer, Radio, Space } from 'antd';
-import cartlogo from "../components/images/cart.png"
+import cartlogo from "..//images/cart.png"
 
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined, OrderedListOutlined } from '@ant-design/icons';
 import { Breadcrumb } from 'antd';
-import { ContextCart } from '../context/ContextCart'
-import { totalAmount, totalAmountItems } from "../services/CartUtils";
-import Orders from './Orders'
-import UserInfo from './UserInfo'
+import { ContextCart } from '../../context/ContextCart'
+import { totalAmount, totalAmountItems } from "../../utils/CartUtils";
+import Orders from './navbar-drawer/orders/Orders'
+import UserInfo from './navbar-drawer/user-info/UserInfo'
 
 
 
