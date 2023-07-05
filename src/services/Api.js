@@ -32,11 +32,11 @@ export default class Data {
                 return resp;
             } else {
                 let resp = await data.json();
-                message.error(resp.error.message, [3], console.log(""))
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error);
         }
 
 
@@ -57,11 +57,11 @@ export default class Data {
                 return resp;
             } else {
                 let resp = await data.json();
-                message.error(resp.error.message, [3], console.log(""))
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error);
         }
 
 
@@ -81,11 +81,11 @@ export default class Data {
                 return resp;
             } else {
                 let resp = await data.json();
-                message.error(resp, [3], console.log(resp))
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error);
         }
 
 
@@ -103,11 +103,11 @@ export default class Data {
                 return resp;
             } else {
                 let resp = await data.json();
-                message.error(resp, [3], console.log(resp))
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error);
         }
 
 
@@ -127,11 +127,11 @@ export default class Data {
             } else {
                 let resp = await data.json();
 
-                message.error(resp.error.message, [3], console.log(""))
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error);
         }
 
 
@@ -147,32 +147,32 @@ export default class Data {
                 return resp;
             } else {
                 let resp = await data.json();
-                console.log(resp);
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error)
         }
 
 
     }
 
 
-    async getCustomerByEmail(id) {
+    async getCustomerById(id) {
 
         try {
-            let data = await this.api(`/customers/id=`)
+            let data = await this.api(`/customers/id=${id}`)
 
             if (data.status === 200) {
                 let resp = await data.json();
                 return resp;
             } else {
                 let resp = await data.json();
-                message.error(resp.error.message, [3], console.log(""))
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error);
         }
 
 
@@ -193,11 +193,11 @@ export default class Data {
                 return resp;
             } else {
                 let resp = await data.json();
-                message.error(resp.error.message, [3], console.log(""))
+                return resp.error.message
             }
 
         } catch (error) {
-            message.error(error, [3], console.log(error))
+            console.log(error);
         }
 
 

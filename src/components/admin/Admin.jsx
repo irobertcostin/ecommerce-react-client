@@ -21,9 +21,9 @@ export default function Admin() {
 
 
 
-
-    const admDetails = "admDetails";
     const admUsers = 'admUsers';
+    const admDetails = "admDetails";
+
     const admProducts = "admProducts";
     const admOrders = "admOrders";
 
@@ -59,9 +59,6 @@ export default function Admin() {
 
 
 
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(' ')
-    }
 
 
 
@@ -88,7 +85,7 @@ export default function Admin() {
                                             <div className="ml-10 flex items-baseline space-x-4">
 
                                                 <button onClick={goProducts} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Products</button>
-                                                <button onClick={goUsers} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Users</button>
+                                                <button onClick={goUsers} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Customers</button>
                                                 <button onClick={goOrders} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Orders</button>
                                                 <button onClick={goDetails} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Order Details</button>
 
@@ -118,7 +115,8 @@ export default function Admin() {
                                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
 
                                     <button onClick={goProducts} className='block w-full text-left rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Products</button>
-                                    <button onClick={goUsers} className='block w-full text-left rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Users</button>
+                                    <button onClick={goUsers} className='block w-full text-left rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Customers</button>
+
                                     <button onClick={goOrders} className='block w-full text-left rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Orders</button>
                                     <button onClick={goDetails} className='block w-full text-left rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Order Details</button>
 
@@ -140,7 +138,6 @@ export default function Admin() {
                             switch (page) {
                                 case admUsers:
                                     return <AdmUsers />;
-
 
                                 case admDetails:
                                     return <AdmDetails />;
