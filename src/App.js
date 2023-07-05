@@ -18,6 +18,7 @@ import { ContextUser } from "./context/ContextCustomers";
 import { ContextCart } from "./context/ContextCart";
 import Footer from "./components/home/Footer";
 import Admin from "./components/admin/Admin";
+import AdmUsersEdit from "./components/admin/user-edit/AdmUsersEdit";
 
 
 
@@ -62,6 +63,7 @@ function App() {
               <Route path="/gallery" element={<Products />} />
               <Route path="/product/:id" element={<Product setTotalCartObj={setTotalCartObj} />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/customers/:id" element={<AdmUsersEdit />} />
             </Route>
 
 
