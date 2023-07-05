@@ -23,3 +23,16 @@ body {
 .home-comm-label {
   font-family: 'Rubik', sans-serif;
 }
+
+.slick-dots-bottom li {
+  background: #767474;
+}
+
+.slick-active button {
+  background-color: #635e5e !important;
+
+}
+
+.slick-dots-bottom {
+  margin-top: 20px;
+}

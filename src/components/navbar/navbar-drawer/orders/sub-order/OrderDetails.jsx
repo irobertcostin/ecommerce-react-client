@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import DotLoader from "react-spinners/DotLoader";
 import Data from "../../../../../services/Api";
-
+import { Carousel } from 'antd';
 import OrderItemDetails from "./OrderItemDetails";
 
 
@@ -17,13 +17,18 @@ export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoad
 
 
 
-    let retrieveProducts = async (id) => {
-        let obj = await api.getProductsById(id)
-        return obj;
-    }
+    const contentStyle = {
+        margin: 0,
+        height: '160px',
+        color: '#095ee6',
+        lineHeight: '160px',
+        textAlign: 'center',
+        background: '#095ee6',
+    };
 
-
-
+    const onChange = (currentSlide) => {
+        console.log(currentSlide);
+    };
 
 
     let retrieveDetails = async () => {
@@ -91,20 +96,24 @@ export default function OrderDetails({ showOrder, isOrderLoading, setIsOrderLoad
                                 :
 
 
-                                <div className=" w-full h-[100%] flex overflow-x-scroll">
-
-                                    {
-                                        details.map(element => {
-
-
-
+                                <div className=" w-full h-[100%]">
+                                    <Carousel afterChange={onChange} dots={{ className: 'custom-dots' }}>
+                                        {
+                                            details.map(element => {
+                                                return (
 
 
-                                            return (
-                                                <OrderItemDetails element={element} />
-                                            )
-                                        })
-                                    }
+
+
+                                                    <OrderItemDetails element={element} key={element.id} />
+
+
+
+                                                )
+                                            })
+                                        }
+
+                                    </Carousel>
                                 </div>
 
 

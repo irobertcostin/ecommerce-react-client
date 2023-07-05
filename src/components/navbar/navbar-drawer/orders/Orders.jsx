@@ -52,7 +52,7 @@ export default function Orders() {
         <>
 
 
-            <div className="w-full h-[45vh] md:h-[49vh] overflow-y-scroll">
+            <div className="w-full min-h-[35vh] border md:h-[49vh] overflow-y-scroll">
                 <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-12">
                     {
                         userOrders
@@ -92,11 +92,11 @@ export default function Orders() {
                     userOrders
                         ?
                         <>
-                            <div className=" h-[28vh] mt-8 md:mt-12  shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center items-center mr-3">
+                            <div className=" md:mt-12 flex justify-center items-center">
                                 {
                                     !showOrder
                                         ?
-                                        <div className="w-full text-center ">
+                                        <div className="w-full text-center mt-24">
                                             <p className="text-[12px]">Select an order to display</p>
                                         </div>
                                         :
