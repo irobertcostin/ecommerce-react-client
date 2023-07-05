@@ -22,7 +22,7 @@ export default function AdmUsers() {
     let retrieveUsers = async () => {
 
         let data = await api.getCustomers();
-        console.log(data);
+
         setAllUsers(data);
 
     }
