@@ -5,9 +5,9 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import React, { useState, useEffect } from 'react'
 
 import AdmDetails from "./admin-comp/AdmDetails"
-import AdmUsers from "./admin-comp/AdmUsers"
+import AdmUsers from "./customer/AdmUsers"
 import AdmProducts from "./admin-comp/AdmProducts"
-import AdmOrders from "./admin-comp/AdmOrders"
+import AdmOrders from "../admin/orders/AdmOrders"
 
 
 
@@ -129,7 +129,7 @@ export default function Admin() {
 
                 <header className="bg-white shadow">
                     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                        <h1 className="text-2xl font-bold tracking-tight text-gray-900">Welcome, admin</h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900">Welcome to Admin Dashboard</h1>
                     </div>
                 </header>
                 <main>

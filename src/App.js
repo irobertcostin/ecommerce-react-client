@@ -18,8 +18,8 @@ import { ContextUser } from "./context/ContextCustomers";
 import { ContextCart } from "./context/ContextCart";
 import Footer from "./components/home/Footer";
 import Admin from "./components/admin/Admin";
-import AdmUsersEdit from "./components/admin/user-edit/AdmUsersEdit";
-
+import AdmUsersEdit from "./components/admin/customer/AdmUsersEdit";
+import AdmOrdersEdit from "./components/admin/orders/AdmOrdersEdit";
 
 
 
@@ -64,6 +64,7 @@ function App() {
               <Route path="/product/:id" element={<Product setTotalCartObj={setTotalCartObj} />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/admin/customers/:id" element={<AdmUsersEdit />} />
+              <Route path="/admin/orders/:id" element={<AdmOrdersEdit />} />
             </Route>
 
 
@@ -89,8 +90,12 @@ export default App;
 
 
 
+// error when checking out 
+// see 2nd user , order 11 
+// before order, check stock/quantity
+// when checking out, erase quantity from store?
 
-
+// pressing add to cart multiple times will not update the cart total amount
 // subtotal not updated when checkout 
 // cannot send props from navbar to cart to cartRow 
 // pagina pentru orders -> order details 
