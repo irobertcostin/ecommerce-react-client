@@ -90,7 +90,8 @@ export default App;
 
 
 
-// error when checking out 
+
+// error when checking out , total does no count multiple items, must retest
 // see 2nd user , order 11 
 // before order, check stock/quantity
 // when checking out, erase quantity from store?

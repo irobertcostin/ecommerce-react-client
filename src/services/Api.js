@@ -92,6 +92,29 @@ export default class Data {
     }
 
 
+    async getOrderById(id) {
+
+        try {
+            let data = await this.api(`/orders/order-id=${id}`)
+
+            if (data.status === 200) {
+                let resp = await data.json();
+
+                return resp;
+            } else {
+                let resp = await data.json();
+                return resp.error.message
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+
+
+    }
+
+
+
     async getOrderDetailsByOrderId(id) {
 
         try {
