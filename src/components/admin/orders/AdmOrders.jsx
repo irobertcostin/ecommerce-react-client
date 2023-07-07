@@ -1,52 +1,50 @@
 import { useState, useEffect } from "react";
 import Data from "../../../services/Api"
-import AdmUsersRow from "./AdmUsersRow";
 import DotLoader from "react-spinners/DotLoader";
+import AdmOrdersRow from "./AdmOrdersRow";
 
 
 
 
+export default function AdmOrders() {
 
-
-
-export default function AdmUsers() {
-
-    let url = ""
-
-
-    let [allUsers, setAllUsers] = useState();
+    let [allOrders, setAllOrders] = useState();
 
     let api = new Data();
 
 
-    let retrieveUsers = async () => {
+    let retrieveOrders = async () => {
 
-        let data = await api.getCustomers();
-
-        setAllUsers(data);
+        let data = await api.getOrders();
+        console.log(data);
+        setAllOrders(data);
 
     }
 
 
 
-    useEffect(() => {
-        retrieveUsers()
 
-    }, [!allUsers])
+
+    useEffect(() => {
+        retrieveOrders()
+
+    }, [!allOrders])
 
 
 
 
     return (
         <>
-            <ul role="list" className="divide-y divide-gray-100 md:py-11">
+
+
+            <ul role="list" className="divide-y divide-gray-100 max-h-[52vh] overflow-y-scroll md:py-11">
                 {
-                    allUsers
+                    allOrders
                         ?
 
 
-                        allUsers.map((person) => (
-                            <AdmUsersRow key={person.id} person={person}></AdmUsersRow>
+                        allOrders.map((order) => (
+                            <AdmOrdersRow key={order.id} order={order}></AdmOrdersRow>
                         ))
 
                         :
@@ -58,7 +56,6 @@ export default function AdmUsers() {
 
                 }
             </ul>
-
         </>
     )
 }

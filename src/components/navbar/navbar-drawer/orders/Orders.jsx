@@ -52,8 +52,8 @@ export default function Orders() {
         <>
 
 
-            <div className="w-full min-h-[35vh] border md:h-[49vh] overflow-y-scroll">
-                <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-12">
+            <div className="w-full min-h-[30vh] border  md:h-[30vh] pt-8 overflow-y-scroll">
+                <ul role="list" className="-my-6 divide-y divide-gray-200 px-4 pt-4">
                     {
                         userOrders
                             ?

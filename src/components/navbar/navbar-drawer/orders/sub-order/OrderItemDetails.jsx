@@ -81,10 +81,12 @@ export default function OrderItemDetails({ element }) {
 
                     <>
 
-                        <div key={item.product_id} className=" mt-2 relative  flex flex-col justify-center items-center ">
+                        <div key={item.product_id} className=" mt-2 relative border  flex flex-col justify-center items-center ">
+
+                            <img className=" mt-8 pb-2 mx-auto" src={item.product_pic} alt="missing image" ></img>
                             <div className="flex justify-between w-full px-10 py-2  text-xs absolute top-0">
 
-                                <div className="">
+                                <div className="flex flex-col">
                                     <p>Order id {item.order_id}</p>
                                     <p>Product id {item.product_id}</p>
                                 </div>
@@ -95,8 +97,6 @@ export default function OrderItemDetails({ element }) {
                                 </div>
 
                             </div>
-                            <img className=" mt-8 pb-2 mx-auto" src={item.product_pic} alt="missing image" ></img>
-
 
 
                         </div>
