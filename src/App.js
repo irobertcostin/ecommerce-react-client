@@ -28,14 +28,14 @@ function App() {
 
 
   let [signedIn, setSignedIn] = useState(false)
-  let [user, setUser] = useState("");
+  let [user, setUser] = useState(ContextUser);
   let [totalCartObj, setTotalCartObj] = useState();
   // let [cart, setCart] = useContext(ContextCart);
 
 
 
   useEffect(() => {
-
+    console.log(user);
   }, [user])
 
 

@@ -16,12 +16,10 @@ export const UserProvider = ({ children }) => {
 
 
     useEffect(() => {
+        console.log(user);
+        setUser(user)
 
-        // if (Cookies.get("authenticatedUser")) {
-        //     setUser(JSON.parse(Cookies.get("authenticatedUser")));
-        // }
-
-    }, [])
+    }, [user])
 
 
     return (

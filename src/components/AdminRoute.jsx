@@ -7,8 +7,16 @@ import React, { useContext } from 'react';
 const AdminRoutes = () => {
 
     let [user, setUser] = useContext(ContextUser);
+
+    console.log(user);
+
+
+
+
+
+
     return (
-        user.role === "admin" ? <Outlet /> : <Navigate to='/admin' />
+        user.user.role === "admin" ? <Outlet /> : <Navigate to='/admin' />
     )
 }
 

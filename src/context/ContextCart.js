@@ -15,11 +15,11 @@ export const CartProvider = ({ children }) => {
 
     useEffect(() => {
 
-        if (Cookies.get("authenticatedUserCart")) {
-            setCart(JSON.parse(Cookies.get("authenticatedUserCart")));
+        // if (Cookies.get("authenticatedUserCart")) {
+        //     setCart(JSON.parse(Cookies.get("authenticatedUserCart")));
 
 
-        }
+        // }
 
 
     }, [])
