@@ -54,9 +54,10 @@ export default function Login({ setSignedIn }) {
         if (email !== "" && password !== "") {
             let api = new Data();
             let attempt = await api.login(email, password)
-            console.log(attempt);
+            // console.log(attempt);
             if (attempt) {
-                Cookies.set("authenticatedUser", JSON.stringify(attempt));
+                // Cookies.set("authenticatedUser", JSON.stringify(attempt));
+                // console.log(attempt);
                 setUser(attempt)
                 setSignedIn(true)
                 goHome();
@@ -67,21 +68,7 @@ export default function Login({ setSignedIn }) {
 
 
 
-    // copy to clipboard function 
 
-    let [isCopied, setIsCopied] = useState(false);
-
-    let handleCopyClick = (element) => {
-        // write text to navigator 
-        console.log(element.target.value);
-        // navigator.clipboard.writeText("");
-        // setIsCopied(true);
-        // // drops the text 
-        // setTimeout(() => {
-        //     navigator.clipboard.writeText('');
-        //     setIsCopied(false)
-        // }, 10000);
-    };
 
 
 
@@ -92,7 +79,7 @@ export default function Login({ setSignedIn }) {
 
 
     useEffect(() => {
-        console.log();
+        // console.log(user);
     }, [])
 
 
@@ -180,7 +167,7 @@ export default function Login({ setSignedIn }) {
                                     <p onClick={handleCopyClick}>{item.password}</p>
                                 </div>
                             ))} */}
-                            <p onClick={handleCopyClick}>gbellew0@amazon.co.jp</p>
+                            <p >gbellew0@amazon.co.jp</p>
                             <p>xI9mTrM</p>
 
                             <p>fcarlan1@yale.edu</p>
