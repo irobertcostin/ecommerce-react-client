@@ -20,7 +20,7 @@ import Footer from "./components/home/Footer";
 import Admin from "./components/admin/Admin";
 import AdmUsersEdit from "./components/admin/customer/AdmUsersEdit";
 import AdmOrdersEdit from "./components/admin/orders/AdmOrdersEdit";
-
+import AdminRoute from "./components/AdminRoute";
 
 
 
@@ -62,14 +62,23 @@ function App() {
               <Route path="/" element={<Home user={user} />} />
               <Route path="/gallery" element={<Products />} />
               <Route path="/product/:id" element={<Product setTotalCartObj={setTotalCartObj} />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/admin/customers/:id" element={<AdmUsersEdit />} />
-              <Route path="/admin/orders/:id" element={<AdmOrdersEdit />} />
+
+
+
+              <Route element={<AdminRoute />}>
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin/customers/:id" element={<AdmUsersEdit />} />
+                <Route path="/admin/orders/:id" element={<AdmOrdersEdit />} />
+              </Route>
+
+
+
+
             </Route>
 
 
-            <Route path="/customers/login" element={<Login user={user} setUser={setUser} setSignedIn={setSignedIn} />} />
-
+            <Route path="/login" element={<Login user={user} setUser={setUser} setSignedIn={setSignedIn} />} />
+            <Route path="/register" element={<Register />} />
 
 
 
@@ -90,7 +99,7 @@ export default App;
 
 
 
-
+// check row allignment on all admin components
 // error when checking out , total does no count multiple items, must retest
 // see 2nd user , order 11 
 // before order, check stock/quantity

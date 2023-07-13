@@ -4,12 +4,12 @@ import React, { useContext } from 'react';
 
 
 
-const PrivateRoutes = () => {
+const AdminRoutes = () => {
 
     let [user, setUser] = useContext(ContextUser);
     return (
-        user ? <Outlet /> : <Navigate to='/login' />
+        user.role === "admin" ? <Outlet /> : <Navigate to='/admin' />
     )
 }
 
-export default PrivateRoutes;
+export default AdminRoutes;

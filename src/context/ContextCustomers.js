@@ -17,10 +17,9 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
 
-        if (Cookies.get("authenticatedUser")) {
-            setUser(JSON.parse(Cookies.get("authenticatedUser")));
-            // message.success(`Welcome back ${JSON.parse(Cookies.get("authenticatedUser")).user.full_name}`)
-        }
+        // if (Cookies.get("authenticatedUser")) {
+        //     setUser(JSON.parse(Cookies.get("authenticatedUser")));
+        // }
 
     }, [])
 

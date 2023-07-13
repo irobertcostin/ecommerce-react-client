@@ -15,6 +15,8 @@ import { ContextCart } from '../../context/ContextCart'
 import { totalAmount, totalAmountItems } from "../../utils/CartUtils";
 import Orders from './navbar-drawer/orders/Orders'
 import UserInfo from './navbar-drawer/user-info/UserInfo'
+import { ContextUser } from '../../context/ContextCustomers'
+
 
 
 
@@ -25,6 +27,8 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
     let [cart, setCart] = useContext(ContextCart);
     const [open, setOpen] = useState(false);
     const [placement, setPlacement] = useState('right');
+
+
 
     const showDrawer = () => {
         setTotalCartObj(totalAmountItems(cart))
@@ -70,12 +74,14 @@ export default function Navbar({ signedIn, setSignedIn, setUser, user, totalCart
 
 
     let handleAutoLogin = () => {
-        if (Cookies.get("authenticatedUser")) {
+        // if (Cookies.get("authenticatedUser")) {
 
-            setUser(JSON.parse(Cookies.get("authenticatedUser")));
-            setSignedIn(true)
-            goHome();
-        }
+        //     setUser(JSON.parse(Cookies.get("authenticatedUser")));
+        //     setSignedIn(true)
+        //     goHome();
+        // } else {
+
+        // }
     }
 
 

@@ -242,7 +242,34 @@ export default class Data {
                 return resp
             } else {
                 let resp = await data.json();
-                message.error(resp, [3], console.log(resp))
+                alert(resp.error)
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+
+
+    }
+
+
+
+    async register(user) {
+
+        try {
+
+            let data = await this.api('/customers/register', "POST", user)
+
+
+            if (data.status === 201) {
+                let resp = await data.json();
+
+                console.log(resp);
+
+                return resp;
+            } else {
+                let resp = await data.json();
+                console.log(resp.error)
             }
 
         } catch (error) {

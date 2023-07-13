@@ -19,6 +19,11 @@ export default function Login({ setSignedIn }) {
         navigate("/")
     }
 
+    let goRegister = () => {
+
+        navigate("/register")
+    }
+
 
     let [user, setUser] = useContext(ContextUser)
 
@@ -49,10 +54,13 @@ export default function Login({ setSignedIn }) {
         if (email !== "" && password !== "") {
             let api = new Data();
             let attempt = await api.login(email, password)
-            Cookies.set("authenticatedUser", JSON.stringify(attempt));
-            setUser(attempt)
-            setSignedIn(true)
-            goHome();
+            console.log(attempt);
+            if (attempt) {
+                Cookies.set("authenticatedUser", JSON.stringify(attempt));
+                setUser(attempt)
+                setSignedIn(true)
+                goHome();
+            }
         }
     }
 
@@ -134,9 +142,9 @@ export default function Login({ setSignedIn }) {
                                     Password
                                 </label>
                                 <div className="text-sm">
-                                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                        Forgot password?
-                                    </a>
+                                    <button onClick={goRegister} className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        Not registered yet?
+                                    </button>
                                 </div>
                             </div>
                             <div className="mt-2">
